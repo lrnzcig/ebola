@@ -186,8 +186,8 @@
                             </a>
                         </div>
                     </div>
-                    <div class="ibox-content">
-                      <div id="high-charts-container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                    <div id="high-charts-container-parent" class="ibox-content">
+                      <div id="high-charts-container" style="min-width: 675px; height: 400px; margin: 0 auto"></div>
 
                     </div>
                 </div>
@@ -356,6 +356,8 @@
             ranges: get_default_ranges(),
             averages: get_default_averages(),
             update: function () {
+              //$("#high-charts-container").remove();
+              //$("#high-charts-container-parent").append('<div id="high-charts-container" style="min-width: 675px; height: 400px; margin: 0 auto"></div>')
               chart_update();
             },
             set_ranges: function(ranges) {
@@ -486,7 +488,7 @@
               tooltip: {
                   crosshairs: true,
                   shared: true,
-                  valueSuffix: '°C'
+                  valueSuffix: ''
               },
 
               legend: {
