@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ebola | Basic Form</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>Basic Form</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li>
+                            <a>Forms</a>
+                        </li>
+                        <li class="active">
+                            <strong>Basic Form</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+
+            <div id="log-in-row" class="row">
+                <div class="col-lg-5">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Log in</h5>
+                            <div class="ibox-tools">
+                                <a id="log-in-collapse" class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="fa fa-wrench"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li><a href="#">Config option 1</a>
+                                    </li>
+                                    <li><a href="#">Config option 2</a>
+                                    </li>
+                                </ul>
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <form class="form-horizontal">
+                                <div id="log-in-message">
+                                  <p>Please introduce your credentials.</p>
+                                </div>
+                                <div class="form-group"><label class="col-lg-2 control-label">Email</label>
+                                    <div class="col-lg-10"><input id="username" type="email" placeholder="Email" class="form-control"></input>
+                                    </div>
+                                </div>
+                                <div class="form-group"><label class="col-lg-2 control-label">Password</label>
+                                    <div class="col-lg-10"><input id="password" type="password" placeholder="Password" class="form-control"></input></div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-offset-2 col-lg-10">
+                                        <button class="btn btn-sm btn-white" type="submit" id="login">Sign in</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="form" class="row">
+                <div class="col-lg-8">
+                  <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Introduce the total number of accumulated downloads below</h5>
+                        <div class="ibox-tools">
+                            <a id="form-collapse" class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="#">Config option 1</a>
+                                </li>
+                                <li><a href="#">Config option 2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td>i-th day:</td>
+                                <td><input id="ith1" class="form-control" style="min-width:40px"></input></td>
+                                <td><input id="ith2" class="form-control" style="min-width:40px"></input></td>
+                                <td><input id="ith3" class="form-control" style="min-width:40px"></input></td>
+                                <td><input id="ith4" class="form-control" style="min-width:40px"></input></td>
+                                <td><input id="ith5" class="form-control" style="min-width:40px"></input></td>
+                                <td><input id="ith6" class="form-control" style="min-width:40px"></input></td>
+                                <td><input id="ith7" class="form-control" style="min-width:40px"></input></td>
+                                <td><input id="ith8" class="form-control" style="min-width:40px"></input></td>
+                            </tr>
+                            <tr>
+                              <td># of downloads:</td>
+                              <td><input id="num1" class="form-control"></input></td>
+                              <td><input id="num2" class="form-control"></input></td>
+                              <td><input id="num3" class="form-control"></input></td>
+                              <td><input id="num4" class="form-control"></input></td>
+                              <td><input id="num5" class="form-control"></input></td>
+                              <td><input id="num6" class="form-control"></input></td>
+                              <td><input id="num7" class="form-control"></input></td>
+                              <td><input id="num8" class="form-control"></input></td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <div class="form-group">
+                                    <div class="col-lg-offset-2 col-lg-10">
+                                        <button class="btn btn-sm btn-white" type="submit" id="submit-data">Submit data</button>
+                                    </div>
+                                </div>
+                              </td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="chart" class="row">
+              <div class="col-lg-8">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Chart</h5>
+                        <div class="ibox-tools">
+                            <a id="chart-collapse" class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="#">Config option 1</a>
+                                </li>
+                                <li><a href="#">Config option 2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                      <div id="high-charts-container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+                    </div>
+                </div>
+              </div>
+            </div>
+
+        <div class="footer">
+            <div class="pull-right">
+                10GB of <strong>250GB</strong> Free.
+            </div>
+            <div>
+                <strong>Copyright</strong> Example Company &copy; 2014-2015
+            </div>
+        </div>
+
+        </div>
+        </div>
+
+
+    <!-- Mainly scripts -->
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+
+    <!-- iCheck -->
+    <script src="js/plugins/iCheck/icheck.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $('.i-checks').iCheck({
+          checkboxClass: 'icheckbox_square-green',
+          radioClass: 'iradio_square-green',
+        });
+      });
+    </script>
+
+    <!-- ebola button controllers -->
+    <script>
+      $(document).ready(function(){
+
+        var element = document.getElementById("form-collapse");
+        element.click();
+        var element = document.getElementById("chart-collapse");
+        element.click();
+
+        <!-- Login button controller -->
+        $('#login').click(function(){
+          auth = btoa(document.getElementById('username').value + ':' + document.getElementById('password').value);
+          $.ajax({
+            url: 'http://localhost:8080/ebola-jersey-server/webapi/login',
+            type: 'GET',
+            headers: {
+              "Authorization": 'Basic ' + auth,
+              "Origin": "http://www.sisifo.com",
+              "Access-Control-Request-Method" : "GET",
+              "Access-Control-Request-Headers" : "Authorization"
+            },
+            complete: function(e, xhr, settings){
+              if (e.status == 200) {
+                //var element = document.getElementById("log-in-row");
+                //element.style.display = 'none'
+                // ...= 'block'
+                var element = document.getElementById("log-in-collapse");
+                element.click();
+                var element = document.getElementById("form-collapse");
+                element.click();
+              } else if (e.status === 401){
+                var element = document.getElementById("log-in-message");
+                element.innerHTML = "<p>Wrong user id or password</p>";
+                element.style.backgroundColor = 'yellow'
+              } else if (e.status === 500){
+                var element = document.getElementById("log-in-message");
+                element.innerHTML = "<p>Fatal error in server</p>";
+                element.style.backgroundColor = "rgb(200, 0, 20)"
+              } else {
+                var element = document.getElementById("log-in-message");
+                element.innerHTML = "<p>Unexpected fatal error. Is server up?</p>";
+                element.style.backgroundColor = "rgb(200, 0, 20)"
+              }
+            }
+          });
+        });
+
+        <!-- Submit data controller -->
+        $('#submit-data').click(function(){
+          ith1 = document.getElementById('ith1').value
+          ith2 = document.getElementById('ith2').value
+          ith3 = document.getElementById('ith3').value
+          ith4 = document.getElementById('ith4').value
+          ith5 = document.getElementById('ith5').value
+          ith6 = document.getElementById('ith6').value
+          ith7 = document.getElementById('ith7').value
+          ith8 = document.getElementById('ith8').value
+          num1 = document.getElementById('num1').value
+          num2 = document.getElementById('num2').value
+          num3 = document.getElementById('num3').value
+          num4 = document.getElementById('num4').value
+          num5 = document.getElementById('num5').value
+          num6 = document.getElementById('num6').value
+          num7 = document.getElementById('num7').value
+          num8 = document.getElementById('num8').value
+          data = {
+            "iths" : [
+              //{"1": ith1, "2": ith2, "3": ith3, "4": ith4, "5": ith5, "6": ith6, "7": ith7, "8": ith8}
+              ith1, ith2, ith3, ith4, ith5, ith6, ith7, ith8
+            ],
+            "nums" : [
+              //{"1": num1, "2": num2, "3": num3, "4": num4, "5": num5, "6": num6, "7": num7, "8": num8}
+              num1, num2, num3, num4, num5, num6, num7, num8
+            ]
+          }
+          $.ajax({
+            url: 'http://localhost:8080/ebola-jersey-server/webapi/submit-data',
+            type: 'PUT',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            headers: {
+              "Authorization": 'Basic ' + auth,
+              "Origin": "http://www.sisifo.com",
+              "Access-Control-Request-Method" : "PUT",
+              "Access-Control-Request-Headers" : "Authorization"
+            },
+            complete: function(e, xhr, settings){
+              if (e.status == 200) {
+                var element = document.getElementById("chart-collapse");
+                element.click()
+                document.getElementById("chart").focus()
+              } else if (e.status === 401){
+                var element = document.getElementById("log-in-message");
+                element.innerHTML = "<p>Wrong user id or password</p>";
+                element.style.backgroundColor = 'yellow'
+              } else if (e.status === 500){
+                var element = document.getElementById("log-in-message");
+                element.innerHTML = "<p>Fatal error in server</p>";
+                element.style.backgroundColor = "rgb(200, 0, 20)"
+              } else {
+                var element = document.getElementById("log-in-message");
+                element.innerHTML = "<p>Unexpected fatal error. Is server up?</p>";
+                element.style.backgroundColor = "rgb(200, 0, 20)"
+              }
+            }
+          });
+        });
+
+      });
+    </script>
+
+    <!-- highcharts -->
+    <script src="js/highcharts/highcharts.js"></script>
+    <script src="js/highcharts/highcharts-more.js"></script>
+    <script src="js/highcharts/exporting.js"></script>
+    <script>
+    $(function () {
+
+        var ranges = [
+                [1246406400000, 14.3, 27.7],
+                [1246492800000, 14.5, 27.8],
+                [1246579200000, 15.5, 29.6],
+                [1246665600000, 16.7, 30.7],
+                [1246752000000, 16.5, 25.0],
+                [1246838400000, 17.8, 25.7],
+                [1246924800000, 13.5, 24.8],
+                [1247011200000, 10.5, 21.4],
+                [1247097600000, 9.2, 23.8],
+                [1247184000000, 11.6, 21.8],
+                [1247270400000, 10.7, 23.7],
+                [1247356800000, 11.0, 23.3],
+                [1247443200000, 11.6, 23.7],
+                [1247529600000, 11.8, 20.7],
+                [1247616000000, 12.6, 22.4],
+                [1247702400000, 13.6, 19.6],
+                [1247788800000, 11.4, 22.6],
+                [1247875200000, 13.2, 25.0],
+                [1247961600000, 14.2, 21.6],
+                [1248048000000, 13.1, 17.1],
+                [1248134400000, 12.2, 15.5],
+                [1248220800000, 12.0, 20.8],
+                [1248307200000, 12.0, 17.1],
+                [1248393600000, 12.7, 18.3],
+                [1248480000000, 12.4, 19.4],
+                [1248566400000, 12.6, 19.9],
+                [1248652800000, 11.9, 20.2],
+                [1248739200000, 11.0, 19.3],
+                [1248825600000, 10.8, 17.8],
+                [1248912000000, 11.8, 18.5],
+                [1248998400000, 10.8, 16.1]
+            ],
+            averages = [
+                [1246406400000, 21.5],
+                [1246492800000, 22.1],
+                [1246579200000, 23],
+                [1246665600000, 23.8],
+                [1246752000000, 21.4],
+                [1246838400000, 21.3],
+                [1246924800000, 18.3],
+                [1247011200000, 15.4],
+                [1247097600000, 16.4],
+                [1247184000000, 17.7],
+                [1247270400000, 17.5],
+                [1247356800000, 17.6],
+                [1247443200000, 17.7],
+                [1247529600000, 16.8],
+                [1247616000000, 17.7],
+                [1247702400000, 16.3],
+                [1247788800000, 17.8],
+                [1247875200000, 18.1],
+                [1247961600000, 17.2],
+                [1248048000000, 14.4],
+                [1248134400000, 13.7],
+                [1248220800000, 15.7],
+                [1248307200000, 14.6],
+                [1248393600000, 15.3],
+                [1248480000000, 15.3],
+                [1248566400000, 15.8],
+                [1248652800000, 15.2],
+                [1248739200000, 14.8],
+                [1248825600000, 14.4],
+                [1248912000000, 15],
+                [1248998400000, 13.6]
+            ];
+
+
+        $('#high-charts-container').highcharts({
+
+            title: {
+                text: 'Number of downloads versus time'
+            },
+
+            xAxis: {
+                type: 'integer'
+            },
+
+            yAxis: {
+                title: {
+                    text: null
+                }
+            },
+
+            tooltip: {
+                crosshairs: true,
+                shared: true,
+                valueSuffix: '°C'
+            },
+
+            legend: {
+            },
+
+            series: [{
+                name: '# of downloads',
+                data: averages,
+                zIndex: 1,
+                marker: {
+                    fillColor: 'white',
+                    lineWidth: 2,
+                    lineColor: Highcharts.getOptions().colors[0]
+                }
+            }, {
+                name: 'Range',
+                data: ranges,
+                type: 'arearange',
+                lineWidth: 0,
+                linkedTo: ':previous',
+                color: Highcharts.getOptions().colors[0],
+                fillOpacity: 0.3,
+                zIndex: 0
+            }]
+        });
+      });
+    </script>
+</body>
+
+</html>
