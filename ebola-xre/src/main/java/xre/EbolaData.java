@@ -1,8 +1,5 @@
 package xre;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement
 public class EbolaData {
 
 	private Integer[] iths;

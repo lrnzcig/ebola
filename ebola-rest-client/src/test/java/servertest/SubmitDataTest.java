@@ -10,6 +10,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import ebola_rest_client.utils.ClientUtils;
+import xre.EbolaChart;
 import xre.EbolaData;
 
 public class SubmitDataTest {
@@ -29,6 +30,8 @@ public class SubmitDataTest {
 				.property(HttpAuthenticationFeature.HTTP_AUTHENTICATION_BASIC_PASSWORD, "pass")
 				.put(Entity.entity(data, MediaType.APPLICATION_JSON));
 		Assert.assertEquals(200, response.getStatus());
-		System.out.println(response.readEntity(String.class));
+		EbolaChart chart = response.readEntity(EbolaChart.class);
+		System.out.println(chart.getRanges().length);
+		System.out.println(chart.getAverages().length);
 	}
 }
