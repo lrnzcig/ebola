@@ -8,7 +8,7 @@
 
     <title>Ebola | Basic Form</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
@@ -209,7 +209,7 @@
 
     <!-- Mainly scripts -->
     <script src="js/jquery-2.1.1.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.js"></script>
     <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
@@ -232,8 +232,8 @@
     <script>
       $(document).ready(function(){
 
-        document.getElementById("form-collapse").click();
-        document.getElementById("chart-collapse").click();
+        //$("#form-collapse").click();
+        //$("#chart-collapse").click();
 
         <!-- Login button controller -->
         $('#login').click(function(){
@@ -242,18 +242,20 @@
             url: 'http://localhost:8080/ebola-jersey-server/webapi/login',
             type: 'GET',
             headers: {
-              "Authorization": 'Basic ' + auth,
-              "Origin": "http://www.sisifo.com",
-              "Access-Control-Request-Method" : "GET",
-              "Access-Control-Request-Headers" : "Authorization"
+              "Authorization": 'Basic ' + auth
+              //"Origin": "http://www.sisifo.com",
+              //"Access-Control-Request-Method" : "GET",
+              //"Access-Control-Request-Headers" : "Authorization"
             },
             complete: function(e, xhr, settings){
               if (e.status == 200) {
                 //var element = document.getElementById("log-in-row");
                 //element.style.display = 'none'
                 // ...= 'block'
-                document.getElementById("log-in-collapse").click();
-                document.getElementById("form-collapse").click();
+                //document.getElementById("log-in-collapse").click();
+                $("#log-in-collapse").click();
+                //document.getElementById("form-collapse").click();
+                $("#form-collapse").click();
               } else if (e.status === 401){
                 var element = document.getElementById("log-in-message");
                 element.innerHTML = "<p>Wrong user id or password</p>";
@@ -305,10 +307,10 @@
             data: JSON.stringify(data),
             contentType: 'application/json',
             headers: {
-              "Authorization": 'Basic ' + auth,
-              "Origin": "http://www.sisifo.com",
-              "Access-Control-Request-Method" : "PUT",
-              "Access-Control-Request-Headers" : "Authorization"
+              "Authorization": 'Basic ' + auth
+              //"Origin": "http://www.sisifo.com",
+              //"Access-Control-Request-Method" : "PUT",
+              //"Access-Control-Request-Headers" : "Authorization"
             },
             complete: function(e, xhr, settings){
               if (e.status == 200) {
@@ -328,11 +330,15 @@
             },
             success: function(data, textStatus, jqXHR) {
               var chart = ChartSingleton.getInstance();
-              chart.set_ranges(data.ranges);
-              chart.set_averages(data.averages);
-              chart.update();
-              document.getElementById("chart-collapse").click();
-              document.getElementById("chart").focus()
+              if (data.ranges) {
+                chart.set_ranges(data.ranges);
+                chart.set_averages(data.averages);
+                chart.update();
+                document.getElementById("chart-collapse").click();
+                document.getElementById("chart").focus()
+              } else {
+                console.log("Error in response from server. No data.ranges")
+              }
             }
           });
         });
