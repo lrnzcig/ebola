@@ -236,6 +236,8 @@
         document.getElementById("form-collapse").click();
         document.getElementById("chart-collapse").click();
 
+        var chart_is_collapsed = true;
+
         <!-- Login button controller -->
         $('#log-in').click(function(){
           auth = btoa(document.getElementById('username').value + ':' + document.getElementById('password').value);
@@ -290,7 +292,7 @@
           num6 = document.getElementById('num6').value
           num7 = document.getElementById('num7').value
           num8 = document.getElementById('num8').value
-          data = {
+          input_data = {
             "iths" : [
               //{"1": ith1, "2": ith2, "3": ith3, "4": ith4, "5": ith5, "6": ith6, "7": ith7, "8": ith8}
               ith1, ith2, ith3, ith4, ith5, ith6, ith7, ith8
@@ -303,7 +305,7 @@
           $.ajax({
             url: 'http://localhost:8080/ebola-jersey-server/webapi/submit-data',
             type: 'PUT',
-            data: JSON.stringify(data),
+            data: JSON.stringify(input_data),
             contentType: 'application/json',
             headers: {
               "Authorization": 'Basic ' + auth
@@ -332,8 +334,12 @@
               if (data.ranges) {
                 chart.set_ranges(data.ranges);
                 chart.set_averages(data.averages);
+                chart.set_scatter_data(input_data)
                 chart.update();
-                document.getElementById("chart-collapse").click();
+                if (chart_is_collapsed) {
+                  document.getElementById("chart-collapse").click();
+                  chart_is_collapsed = false;
+                }
                 document.getElementById("chart").focus()
               } else {
                 console.log("Error in response from server. No data.ranges")
@@ -360,6 +366,7 @@
             // public methods and variables
             ranges: get_default_ranges(),
             averages: get_default_averages(),
+            scatter_data: get_default_scatter_data(),
             update: function () {
               //$("#high-charts-container").remove();
               //$("#high-charts-container-parent").append('<div id="high-charts-container" style="min-width: 675px; height: 400px; margin: 0 auto"></div>')
@@ -377,6 +384,17 @@
               var arrayLength = averages.length;
               for (var i=0; i < arrayLength; i++) {
                 this.averages.push(averages[i].items);
+              }
+            },
+            set_scatter_data: function(data) {
+              this.scatter_data = [];
+              var arrayLength = data.iths.length;
+              for (var i=0; i < arrayLength; i++) {
+                if (data.iths[i] == "") {
+                  break;
+                }
+                item = new Array(parseInt(data.iths[i]), parseInt(data.nums[i]));
+                this.scatter_data.push(item)
               }
             }
           };
@@ -467,11 +485,21 @@
         ]
       };
 
+      get_default_scatter_data = function() {
+        return [
+          [1, 7.0],
+          [2, 6.9],
+          [4, 14.5],
+          [7, 25.2]
+        ]
+      };
+
       var chart_update = (function () {
 
           var chart = ChartSingleton.getInstance();
           var ranges = chart.ranges,
-              averages = chart.averages;
+              averages = chart.averages,
+              scatter_data = chart.scatter_data;
 
 
           $('#high-charts-container').highcharts({
@@ -517,6 +545,14 @@
                   color: Highcharts.getOptions().colors[0],
                   fillOpacity: 0.3,
                   zIndex: 0
+              }, {
+                  name: 'data to predict',
+                  type: 'scatter',
+                  color: Highcharts.getOptions().colors[3],
+                  marker: {
+                    radius: 6
+                  },
+                  data: scatter_data
               }]
           });
       });
