@@ -80,7 +80,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-lg-offset-2 col-lg-10">
-                                        <button class="btn btn-sm btn-white" type="submit" id="login">Sign in</button>
+                                        <button class="btn btn-sm btn-white" type="button" id="log-in">Sign in</button>
                                     </div>
                                 </div>
                             </form>
@@ -187,7 +187,8 @@
                         </div>
                     </div>
                     <div id="high-charts-container-parent" class="ibox-content">
-                      <div id="high-charts-container" style="min-width: 675px; height: 400px; margin: 0 auto"></div>
+                      <!--  div id="high-charts-container" style="min-width: 675px; height: 400px; margin: 0 auto"></div>-->
+                      <div id="high-charts-container" style="width: 1000px; height: 400px; margin: 0 auto"></div>
 
                     </div>
                 </div>
@@ -232,11 +233,11 @@
     <script>
       $(document).ready(function(){
 
-        //$("#form-collapse").click();
-        //$("#chart-collapse").click();
+        document.getElementById("form-collapse").click();
+        document.getElementById("chart-collapse").click();
 
         <!-- Login button controller -->
-        $('#login').click(function(){
+        $('#log-in').click(function(){
           auth = btoa(document.getElementById('username').value + ':' + document.getElementById('password').value);
           $.ajax({
             url: 'http://localhost:8080/ebola-jersey-server/webapi/login',
@@ -252,10 +253,8 @@
                 //var element = document.getElementById("log-in-row");
                 //element.style.display = 'none'
                 // ...= 'block'
-                //document.getElementById("log-in-collapse").click();
-                $("#log-in-collapse").click();
-                //document.getElementById("form-collapse").click();
-                $("#form-collapse").click();
+                document.getElementById("log-in-collapse").click();
+                document.getElementById("form-collapse").click();
               } else if (e.status === 401){
                 var element = document.getElementById("log-in-message");
                 element.innerHTML = "<p>Wrong user id or password</p>";
