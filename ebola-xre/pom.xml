@@ -3,7 +3,8 @@
     <groupId>com.sisifo</groupId>
     <artifactId>ebola-xre</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ebola_xre</name>
+    <name>ebola-xre</name>
+    <packaging>jar</packaging>
 
     <parent>
         <groupId>com.sisifo</groupId>

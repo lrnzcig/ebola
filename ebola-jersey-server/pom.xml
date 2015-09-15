@@ -15,22 +15,6 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <build>
-        <finalName>ebola-jersey-server</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
-                <inherited>true</inherited>
-                <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -50,16 +34,17 @@
             <!-- use the following artifactId if you don't need servlet 2.x compatibility -->
             <!-- artifactId>jersey-container-servlet</artifactId -->
         </dependency>
-	    <dependency>
-	      <groupId>org.glassfish.jersey.media</groupId>
-	      <artifactId>jersey-media-json-jackson</artifactId>
-	    </dependency>
-	    <dependency>
-	    	<groupId>com.sisifo</groupId>
-	    	<artifactId>ebola-xre</artifactId>
-	    	<version>0.0.1-SNAPSHOT</version>
-	    </dependency>
-	    </dependencies>
+	<dependency>
+	    <groupId>org.glassfish.jersey.media</groupId>
+	    <artifactId>jersey-media-json-jackson</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>com.sisifo</groupId>
+	    <artifactId>ebola-xre</artifactId>
+	    <version>0.0.1-SNAPSHOT</version>
+	</dependency>
+    </dependencies>
+
     <properties>
         <jersey.version>2.21</jersey.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
