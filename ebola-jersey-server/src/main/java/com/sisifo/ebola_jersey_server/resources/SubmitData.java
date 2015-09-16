@@ -18,10 +18,18 @@ public class SubmitData {
 
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
-    public EbolaChart getUserName(@Context SecurityContext securityContext, EbolaDataTable data) {
+    public EbolaChart getUserName(@Context SecurityContext securityContext,
+    		EbolaDataTable data) {
     	if (securityContext.getUserPrincipal() == null) {
     		throw new EbolaAuthenticationException("body method");
     	}
-        return EbolaDatabase.getBasicChart();
+    	int length = 0;
+    	for (Integer i : data.getIths()) {
+    		if (i == null) {
+    			break;
+    		}
+    		length++;
+    	}
+        return EbolaDatabase.getBasicChart(data.getAppName(), length);
     }
 }

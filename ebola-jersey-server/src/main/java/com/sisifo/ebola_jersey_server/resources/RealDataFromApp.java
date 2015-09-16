@@ -21,6 +21,6 @@ public class RealDataFromApp {
     	if (securityContext.getUserPrincipal() == null) {
     		throw new EbolaAuthenticationException("body method");
     	}
-        return EbolaDatabase.getBasicRealDataTable();
+        return EbolaDatabase.getBasicRealDataTable(appName);
     }
 }

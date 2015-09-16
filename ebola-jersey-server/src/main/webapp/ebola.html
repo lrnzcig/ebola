@@ -435,7 +435,8 @@
             "nums" : [
               //{"1": num1, "2": num2, "3": num3, "4": num4, "5": num5, "6": num6, "7": num7, "8": num8}
               num1, num2, num3, num4, num5, num6, num7, num8
-            ]
+            ],
+            "appName":  select.options[select.selectedIndex].text
           }
           $.ajax({
             url: 'http://localhost:8080/ebola-jersey-server/webapi/submit-data',

@@ -23,8 +23,8 @@ public class SubmitDataTest {
 		iths[0] = 1;
 		Integer[] nums = new Integer[8];
 		nums[0] = 83;
-		EbolaDataTable data = new EbolaDataTable(iths, nums);
-		
+		EbolaDataTable data = new EbolaDataTable(iths, nums, "Bubble breaker");
+
 		Response response = client.target("http://localhost:8080/ebola-jersey-server/webapi").path("submit-data").request()
 				.property(HttpAuthenticationFeature.HTTP_AUTHENTICATION_BASIC_USERNAME, "kk")
 				.property(HttpAuthenticationFeature.HTTP_AUTHENTICATION_BASIC_PASSWORD, "pass")

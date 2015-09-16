@@ -23,8 +23,8 @@ public class DataFromApp {
     	if (securityContext.getUserPrincipal() == null) {
     		throw new EbolaAuthenticationException("body method");
     	}
-    	EbolaDataTable dataTable = EbolaDatabase.getBasicDataTable();
-    	EbolaChart chart = EbolaDatabase.getBasicChart();
+    	EbolaDataTable dataTable = EbolaDatabase.getBasicDataTable(appName);
+    	EbolaChart chart = EbolaDatabase.getBasicChart(appName, null);
         return new EbolaAppData(dataTable, chart);
     }
 }
