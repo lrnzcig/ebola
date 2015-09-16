@@ -342,6 +342,7 @@
                 chart.set_ranges(data.chart.ranges);
                 chart.set_averages(data.chart.averages);
                 chart.set_scatter_data(data.dataTable);
+                chart.scatter_data_real = null;
                 set_data_into_table(data.dataTable);
                 chart.update();
                 if (chart_is_collapsed) {
