@@ -10,18 +10,21 @@ import javax.ws.rs.core.SecurityContext;
 import com.sisifo.ebola_jersey_server.data.EbolaDatabase;
 import com.sisifo.ebola_jersey_server.exception.EbolaAuthenticationException;
 
+import xre.EbolaAppData;
 import xre.EbolaChart;
 import xre.EbolaDataTable;
 
-@Path("submit-data")
-public class SubmitData {
+@Path("data-from-app")
+public class DataFromApp {
 
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
-    public EbolaChart getUserName(@Context SecurityContext securityContext, EbolaDataTable data) {
+    public EbolaAppData getUserName(@Context SecurityContext securityContext, String appName) {
     	if (securityContext.getUserPrincipal() == null) {
     		throw new EbolaAuthenticationException("body method");
     	}
-        return EbolaDatabase.getBasicChart();
+    	EbolaDataTable dataTable = EbolaDatabase.getBasicDataTable();
+    	EbolaChart chart = EbolaDatabase.getBasicChart();
+        return new EbolaAppData(dataTable, chart);
     }
 }

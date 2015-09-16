@@ -1,15 +1,15 @@
 package xre;
 
-public class EbolaData {
+public class EbolaDataTable {
 
 	private Integer[] iths;
 	private Integer[] nums;
 
-	public EbolaData() {
+	public EbolaDataTable() {
 		
 	}
 	
-	public EbolaData(Integer[] iths, Integer[] nums) {
+	public EbolaDataTable(Integer[] iths, Integer[] nums) {
 		this.setIths(iths);
 		this.setNums(nums);
 	}
