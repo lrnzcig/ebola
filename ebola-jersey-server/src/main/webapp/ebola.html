@@ -56,12 +56,6 @@
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                     <i class="fa fa-wrench"></i>
                                 </a>
-                                <ul class="dropdown-menu dropdown-user">
-                                    <li><a href="#">Config option 1</a>
-                                    </li>
-                                    <li><a href="#">Config option 2</a>
-                                    </li>
-                                </ul>
                                 <a class="close-link">
                                     <i class="fa fa-times"></i>
                                 </a>
@@ -140,25 +134,24 @@
                               <td><input id="num7" class="form-control"></input></td>
                               <td><input id="num8" class="form-control"></input></td>
                             </tr>
-                            <tr>
-                              <td>
-                                <div class="form-group">
-                                    <div class="col-lg-offset-2 col-lg-10">
-                                        <button class="btn btn-sm btn-white" type="submit" id="submit-data">Submit data</button>
-                                    </div>
-                                </div>
-                              </td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                            </tr>
                             </tbody>
                         </table>
+                        <form class="form-horizontal">
+                          <div class="form-group">
+                            <div class="col-lg-offset-0 col-lg-10">
+                              <button class="btn btn-sm btn-white" type="button" id="submit-data">Submit data</button>
+                            </div>
+                          </div>
+                        </form>
+
+                        <h5></br>Get real data to predict</h5>
+                        <form class="form-horizontal">
+                          <div class="form-group">
+                            <div class="col-lg-offset-0 col-lg-10">
+                              <button class="btn btn-sm btn-white" type="button" id="get-real-data">Get real data</button>
+                            </div>
+                          </div>
+                        </form>
 
                     </div>
                 </div>
@@ -177,12 +170,6 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                 <i class="fa fa-wrench"></i>
                             </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li><a href="#">Config option 1</a>
-                                </li>
-                                <li><a href="#">Config option 2</a>
-                                </li>
-                            </ul>
                             <a class="close-link">
                                 <i class="fa fa-times"></i>
                             </a>
@@ -319,7 +306,7 @@
           }
         };
 
-        // controller for combo
+        // Combo controller (after selection of app)
         var selected_app_controller = function () {
           var app_name = select.options[select.selectedIndex].text;
           $.ajax({
@@ -369,7 +356,7 @@
           });
         }
 
-        <!-- Login button controller -->
+        // Login button controller
         $('#log-in').click(function(){
           auth = btoa(document.getElementById('username').value + ':' + document.getElementById('password').value);
           $.ajax({
@@ -422,7 +409,7 @@
           });
         });
 
-        <!-- Submit data controller -->
+        // Submit data controller
         $('#submit-data').click(function(){
           ith1 = document.getElementById('ith1').value
           ith2 = document.getElementById('ith2').value
@@ -496,6 +483,53 @@
           });
         });
 
+        // Get real data controller
+        $('#get-real-data').click(function () {
+          var app_name = select.options[select.selectedIndex].text;
+          $.ajax({
+            url: 'http://localhost:8080/ebola-jersey-server/webapi/get-real-data',
+            type: 'PUT',
+            data: JSON.stringify(app_name),
+            contentType: 'application/json',
+            headers: {
+              "Authorization": 'Basic ' + auth
+              //"Origin": "http://www.sisifo.com",
+              //"Access-Control-Request-Method" : "PUT",
+              //"Access-Control-Request-Headers" : "Authorization"
+            },
+            complete: function(e, xhr, settings){
+              if (e.status == 200) {
+              } else if (e.status === 401){
+                var element = document.getElementById("log-in-message");
+                element.innerHTML = "<p>Wrong user id or password</p>";
+                element.style.backgroundColor = 'yellow'
+              } else if (e.status === 500){
+                var element = document.getElementById("log-in-message");
+                element.innerHTML = "<p>Fatal error in server</p>";
+                element.style.backgroundColor = "rgb(200, 0, 20)"
+              } else {
+                var element = document.getElementById("log-in-message");
+                element.innerHTML = "<p>Unexpected fatal error. Is server up?</p>";
+                element.style.backgroundColor = "rgb(200, 0, 20)"
+              }
+            },
+            success: function(data, textStatus, jqXHR) {
+              var chart = ChartSingleton.getInstance();
+              if (data.iths) {
+                chart.set_scatter_data_real(data);
+                chart.update();
+                if (chart_is_collapsed) {
+                  document.getElementById("chart-collapse").click();
+                  chart_is_collapsed = false;
+                }
+                document.getElementById("chart").focus()
+              } else {
+                console.log("Error in response from server. No data.iths")
+              }
+            }
+          });
+        });
+
       });
     </script>
 
@@ -515,6 +549,7 @@
             ranges: get_default_ranges(),
             averages: get_default_averages(),
             scatter_data: get_default_scatter_data(),
+            scatter_data_real: null,
             update: function () {
               //$("#high-charts-container").remove();
               //$("#high-charts-container-parent").append('<div id="high-charts-container" style="min-width: 675px; height: 400px; margin: 0 auto"></div>')
@@ -543,6 +578,17 @@
                 }
                 item = new Array(parseInt(data.iths[i]), parseInt(data.nums[i]));
                 this.scatter_data.push(item)
+              }
+            },
+            set_scatter_data_real: function(data) {
+              this.scatter_data_real = [];
+              var arrayLength = data.iths.length;
+              for (var i=0; i < arrayLength; i++) {
+                if (data.iths[i] == "") {
+                  break;
+                }
+                item = new Array(parseInt(data.iths[i]), parseInt(data.nums[i]));
+                this.scatter_data_real.push(item)
               }
             }
           };
@@ -647,7 +693,8 @@
           var chart = ChartSingleton.getInstance();
           var ranges = chart.ranges,
               averages = chart.averages,
-              scatter_data = chart.scatter_data;
+              scatter_data = chart.scatter_data,
+              scatter_data_real = chart.scatter_data_real;
 
 
           $('#high-charts-container').highcharts({
@@ -698,9 +745,17 @@
                   type: 'scatter',
                   color: Highcharts.getOptions().colors[4],
                   marker: {
-                    radius: 6
+                    radius: 5
                   },
                   data: scatter_data
+              }, {
+                  name: 'data to predict',
+                  type: 'scatter',
+                  color: Highcharts.getOptions().colors[3],
+                  marker: {
+                    radius: 5
+                  },
+                  data: scatter_data_real
               }]
           });
       });

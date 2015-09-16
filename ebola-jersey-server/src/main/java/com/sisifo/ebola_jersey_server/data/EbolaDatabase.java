@@ -48,4 +48,17 @@ public class EbolaDatabase {
 		nums[1] = 7;
 		return new EbolaDataTable(iths, nums);
 	}
+	
+	public static EbolaDataTable getBasicRealDataTable() {
+		Integer[] iths = new Integer[3];
+		iths[0] = 6;
+		iths[1] = 7;
+		iths[2] = 9;
+		Integer[] nums = new Integer[3];
+		nums[0] = 8;
+		nums[1] = 9;
+		nums[2] = 10;
+		return new EbolaDataTable(iths, nums);
+	}
+
 }
