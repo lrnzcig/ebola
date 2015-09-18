@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Ebola | Basic Form</title>
+    <title>SAMOA</title>
 
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -25,16 +25,14 @@
         <div id="page-wrapper" class="gray-bg">
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
-                    <h2>Basic Form</h2>
+                    <h2>SAMOA</h2>
+                    <h4>Spread Analysis for Mobile Apps</h4>
                     <ol class="breadcrumb">
                         <li>
                             <a href="index.html">Home</a>
                         </li>
-                        <li>
-                            <a>Forms</a>
-                        </li>
                         <li class="active">
-                            <strong>Basic Form</strong>
+                            <strong>SAMOA</strong>
                         </li>
                     </ol>
                 </div>
@@ -42,158 +40,166 @@
 
                 </div>
             </div>
-        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="wrapper wrapper-content animated fadeInRight">
 
-            <div id="log-in-row" class="row">
-                <div class="col-lg-5">
+              <div id="log-in-row" class="row">
+                  <div class="col-lg-5">
+                      <div class="ibox float-e-margins">
+                          <div class="ibox-title">
+                              <h5>Log in</h5>
+                              <div class="ibox-tools">
+                                  <a id="log-in-collapse" class="collapse-link">
+                                      <i class="fa fa-chevron-up"></i>
+                                  </a>
+                                  <a class="close-link">
+                                      <i class="fa fa-times"></i>
+                                  </a>
+                              </div>
+                          </div>
+                          <div class="ibox-content">
+                              <form class="form-horizontal">
+                                  <div id="log-in-message">
+                                    <p>Please introduce your credentials.</p>
+                                  </div>
+                                  <div class="form-group"><label class="col-lg-2 control-label">Email</label>
+                                      <div class="col-lg-10"><input id="username" type="email" placeholder="Email" class="form-control"></input>
+                                      </div>
+                                  </div>
+                                  <div class="form-group"><label class="col-lg-2 control-label">Password</label>
+                                      <div class="col-lg-10"><input id="password" type="password" placeholder="Password" class="form-control"></input></div>
+                                  </div>
+                                  <div class="form-group">
+                                      <div class="col-lg-offset-2 col-lg-10">
+                                          <button class="btn btn-sm btn-white" type="button" id="log-in">Sign in</button>
+                                      </div>
+                                  </div>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div id="submit-form" class="row">
+                  <div class="col-lg-8">
                     <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>Log in</h5>
-                            <div class="ibox-tools">
-                                <a id="log-in-collapse" class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="fa fa-wrench"></i>
-                                </a>
-                                <a class="close-link">
-                                    <i class="fa fa-times"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ibox-content">
-                            <form class="form-horizontal">
-                                <div id="log-in-message">
-                                  <p>Please introduce your credentials.</p>
-                                </div>
-                                <div class="form-group"><label class="col-lg-2 control-label">Email</label>
-                                    <div class="col-lg-10"><input id="username" type="email" placeholder="Email" class="form-control"></input>
-                                    </div>
-                                </div>
-                                <div class="form-group"><label class="col-lg-2 control-label">Password</label>
-                                    <div class="col-lg-10"><input id="password" type="password" placeholder="Password" class="form-control"></input></div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-lg-offset-2 col-lg-10">
-                                        <button class="btn btn-sm btn-white" type="button" id="log-in">Sign in</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                      <div class="ibox-title">
+                          <h5>Manage apps</h5>
 
-            <div id="form" class="row">
+                          <div class="ibox-tools">
+                              <a id="submit-form-collapse" class="collapse-link">
+                                  <i class="fa fa-chevron-up"></i>
+                              </a>
+                              <a class="close-link">
+                                  <i class="fa fa-times"></i>
+                              </a>
+                          </div>
+                      </div>
+                      <div class="ibox-content">
+
+                          <h5>Choose an application from the list</h5>
+                          <select id="select-apps" data-placeholder="Choose an app..." class="chosen-select" style="width:350px;" tabindex="2">
+                            <option value="">Select</option>
+                          </select>
+
+                          <h5></br>Modify the total number of accumulated downloads</h5>
+                          <table class="table">
+                              <tbody>
+                              <tr>
+                                  <td>i-th day:</td>
+                                  <td><input id="ith1" class="form-control" style="min-width:40px"></input></td>
+                                  <td><input id="ith2" class="form-control" style="min-width:40px"></input></td>
+                                  <td><input id="ith3" class="form-control" style="min-width:40px"></input></td>
+                                  <td><input id="ith4" class="form-control" style="min-width:40px"></input></td>
+                                  <td><input id="ith5" class="form-control" style="min-width:40px"></input></td>
+                                  <td><input id="ith6" class="form-control" style="min-width:40px"></input></td>
+                                  <td><input id="ith7" class="form-control" style="min-width:40px"></input></td>
+                                  <td><input id="ith8" class="form-control" style="min-width:40px"></input></td>
+                              </tr>
+                              <tr>
+                                <td># of downloads:</td>
+                                <td><input id="num1" class="form-control"></input></td>
+                                <td><input id="num2" class="form-control"></input></td>
+                                <td><input id="num3" class="form-control"></input></td>
+                                <td><input id="num4" class="form-control"></input></td>
+                                <td><input id="num5" class="form-control"></input></td>
+                                <td><input id="num6" class="form-control"></input></td>
+                                <td><input id="num7" class="form-control"></input></td>
+                                <td><input id="num8" class="form-control"></input></td>
+                              </tr>
+                              </tbody>
+                          </table>
+                          <form class="form-horizontal">
+                            <div class="form-group">
+                              <div class="col-lg-offset-0 col-lg-10">
+                                <button class="btn btn-sm btn-white" type="button" id="submit-data">Submit data</button>
+                              </div>
+                            </div>
+                          </form>
+                      </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="get-real-form" class="row">
+                  <div class="col-lg-8">
+                    <div class="ibox float-e-margins">
+                      <div class="ibox-title">
+                          <h5>Real data to predict</h5>
+
+                          <div class="ibox-tools">
+                              <a id="get-real-form-collapse" class="collapse-link">
+                                  <i class="fa fa-chevron-up"></i>
+                              </a>
+                              <a class="close-link">
+                                  <i class="fa fa-times"></i>
+                              </a>
+                          </div>
+                      </div>
+                      <div class="ibox-content">
+
+                          <form class="form-horizontal">
+                            <div class="form-group">
+                              <div class="col-lg-offset-0 col-lg-10">
+                                <button class="btn btn-sm btn-white" type="button" id="get-real-data">Get real data</button>
+                              </div>
+                            </div>
+                          </form>
+
+                      </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="chart" class="row">
                 <div class="col-lg-8">
                   <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>Manage apps</h5>
-
-                        <div class="ibox-tools">
-                            <a id="form-collapse" class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                            <a class="close-link">
-                                <i class="fa fa-times"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="ibox-content">
-
-                        <h5>Choose an application from the list</h5>
-                        <select id="select-apps" data-placeholder="Choose an app..." class="chosen-select" style="width:350px;" tabindex="2">
-                          <option value="">Select</option>
-                        </select>
-
-                        <h5></br>Modify the total number of accumulated downloads</h5>
-                        <table class="table">
-                            <tbody>
-                            <tr>
-                                <td>i-th day:</td>
-                                <td><input id="ith1" class="form-control" style="min-width:40px"></input></td>
-                                <td><input id="ith2" class="form-control" style="min-width:40px"></input></td>
-                                <td><input id="ith3" class="form-control" style="min-width:40px"></input></td>
-                                <td><input id="ith4" class="form-control" style="min-width:40px"></input></td>
-                                <td><input id="ith5" class="form-control" style="min-width:40px"></input></td>
-                                <td><input id="ith6" class="form-control" style="min-width:40px"></input></td>
-                                <td><input id="ith7" class="form-control" style="min-width:40px"></input></td>
-                                <td><input id="ith8" class="form-control" style="min-width:40px"></input></td>
-                            </tr>
-                            <tr>
-                              <td># of downloads:</td>
-                              <td><input id="num1" class="form-control"></input></td>
-                              <td><input id="num2" class="form-control"></input></td>
-                              <td><input id="num3" class="form-control"></input></td>
-                              <td><input id="num4" class="form-control"></input></td>
-                              <td><input id="num5" class="form-control"></input></td>
-                              <td><input id="num6" class="form-control"></input></td>
-                              <td><input id="num7" class="form-control"></input></td>
-                              <td><input id="num8" class="form-control"></input></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <form class="form-horizontal">
-                          <div class="form-group">
-                            <div class="col-lg-offset-0 col-lg-10">
-                              <button class="btn btn-sm btn-white" type="button" id="submit-data">Submit data</button>
-                            </div>
+                      <div class="ibox-title">
+                          <h5>Chart</h5>
+                          <div class="ibox-tools">
+                              <a id="chart-collapse" class="collapse-link">
+                                  <i class="fa fa-chevron-up"></i>
+                              </a>
+                              <a class="close-link">
+                                  <i class="fa fa-times"></i>
+                              </a>
                           </div>
-                        </form>
+                      </div>
+                      <div id="high-charts-container-parent" class="ibox-content">
+                        <!--  div id="high-charts-container" style="min-width: 675px; height: 400px; margin: 0 auto"></div>-->
+                        <div id="high-charts-container"></div>
 
-                        <h5></br>Get real data to predict</h5>
-                        <form class="form-horizontal">
-                          <div class="form-group">
-                            <div class="col-lg-offset-0 col-lg-10">
-                              <button class="btn btn-sm btn-white" type="button" id="get-real-data">Get real data</button>
-                            </div>
-                          </div>
-                        </form>
-
-                    </div>
+                      </div>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div id="chart" class="row">
-              <div class="col-lg-8">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>Chart</h5>
-                        <div class="ibox-tools">
-                            <a id="chart-collapse" class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                            <a class="close-link">
-                                <i class="fa fa-times"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div id="high-charts-container-parent" class="ibox-content">
-                      <!--  div id="high-charts-container" style="min-width: 675px; height: 400px; margin: 0 auto"></div>-->
-                      <div id="high-charts-container" style="width: 1000px; height: 400px; margin: 0 auto"></div>
-
-                    </div>
-                </div>
+              <div class="footer">
+                  <div>
+                      <strong>Copyright</strong> SAMOA &copy; 2015
+                  </div>
               </div>
-            </div>
 
-        <div class="footer">
-            <div class="pull-right">
-                10GB of <strong>250GB</strong> Free.
             </div>
-            <div>
-                <strong>Copyright</strong> Example Company &copy; 2014-2015
-            </div>
-        </div>
-
-        </div>
         </div>
     </div>
 
@@ -240,7 +246,8 @@
     <script>
       $(document).ready(function(){
 
-        document.getElementById("form-collapse").click();
+        document.getElementById("submit-form-collapse").click();
+        document.getElementById("get-real-form-collapse").click();
         document.getElementById("chart-collapse").click();
 
         var chart_is_collapsed = true;
@@ -338,20 +345,10 @@
             },
             success: function(data, textStatus, jqXHR) {
               var chart = ChartSingleton.getInstance();
-              if (data.chart.ranges) {
-                chart.set_ranges(data.chart.ranges);
-                chart.set_averages(data.chart.averages);
-                chart.set_scatter_data(data.dataTable);
-                chart.scatter_data_real = null;
+              if (data.dataTable) {
                 set_data_into_table(data.dataTable);
-                chart.update();
-                if (chart_is_collapsed) {
-                  document.getElementById("chart-collapse").click();
-                  chart_is_collapsed = false;
-                }
-                document.getElementById("chart").focus()
               } else {
-                console.log("Error in response from server. No data.ranges")
+                console.log("Error in response from server. No data.dataTable")
               }
             }
           });
@@ -404,7 +401,7 @@
               $(select).chosen().change(selected_app_controller);
 
               document.getElementById("log-in-collapse").click();
-              document.getElementById("form-collapse").click();
+              document.getElementById("submit-form-collapse").click();
 
             }
           });
@@ -524,6 +521,7 @@
                   document.getElementById("chart-collapse").click();
                   chart_is_collapsed = false;
                 }
+                document.getElementById("get-real-form-collapse").click();
                 document.getElementById("chart").focus()
               } else {
                 console.log("Error in response from server. No data.iths")
@@ -548,9 +546,9 @@
 
           return {
             // public methods and variables
-            ranges: get_default_ranges(),
-            averages: get_default_averages(),
-            scatter_data: get_default_scatter_data(),
+            ranges: null,
+            averages: null,
+            scatter_data: null,
             scatter_data_real: null,
             update: function () {
               //$("#high-charts-container").remove();
@@ -608,6 +606,12 @@
 
         };
       })();
+
+      window.addEventListener('resize', function() {
+        // workaround for making the chart responsive
+        var chart = ChartSingleton.getInstance();
+        chart.update();
+      }, true);
 
       get_default_ranges = function() {
         return [
@@ -698,8 +702,19 @@
               scatter_data = chart.scatter_data,
               scatter_data_real = chart.scatter_data_real;
 
-
           $('#high-charts-container').highcharts({
+
+              chart: {
+                events: {
+                    load: function (event) {
+                        // workaround for making the chart responsive
+                        // (col-lg-8 is 67% of window according to css)
+                        var w = Math.round($(window).width() * 0.55);
+                        var h = Math.round(w / 2);
+                        this.setSize(w, h, doAnimation = {duration: 800, easing: "swing"});
+                    }
+                }
+              },
 
               title: {
                   text: 'Number of downloads versus time'
@@ -729,9 +744,7 @@
                   data: averages,
                   zIndex: 1,
                   marker: {
-                      fillColor: 'white',
-                      lineWidth: 2,
-                      lineColor: Highcharts.getOptions().colors[0]
+                    radius: 0
                   }
               }, {
                   name: 'Range',
@@ -743,14 +756,6 @@
                   fillOpacity: 0.3,
                   zIndex: 0
               }, {
-                  name: 'data',
-                  type: 'scatter',
-                  color: Highcharts.getOptions().colors[4],
-                  marker: {
-                    radius: 5
-                  },
-                  data: scatter_data
-              }, {
                   name: 'data to predict',
                   type: 'scatter',
                   color: Highcharts.getOptions().colors[3],
@@ -758,6 +763,14 @@
                     radius: 5
                   },
                   data: scatter_data_real
+              }, {
+                  name: 'data',
+                  type: 'scatter',
+                  color: Highcharts.getOptions().colors[4],
+                  marker: {
+                    radius: 5
+                  },
+                  data: scatter_data
               }]
           });
       });
