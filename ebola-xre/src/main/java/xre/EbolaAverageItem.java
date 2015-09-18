@@ -45,4 +45,18 @@ public class EbolaAverageItem {
 		this.items = new Float[2];
 	}
 
+	public Integer getDayNumber() {
+		if (this.items == null) {
+			return null;
+		}
+		return Math.round(items[0]);
+	}
+
+	public Float getAverage() {
+		if (this.items == null) {
+			return null;
+		}
+		return items[1];
+	}
+
 }

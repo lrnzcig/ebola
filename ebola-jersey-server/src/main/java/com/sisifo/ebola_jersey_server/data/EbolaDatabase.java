@@ -1,111 +1,146 @@
 package com.sisifo.ebola_jersey_server.data;
 
 import xre.EbolaAppsList;
+import xre.EbolaAverageItem;
 import xre.EbolaChart;
 import xre.EbolaDataTable;
 
 public class EbolaDatabase {
 
+	private static String BUBBLE_BREAKER = "Bubble breaker";
+	private static String CANDY_SWIPE_SLOTS = "Candy swipe slots";
+	private static String BLOOD_ZOMBIE = "Blood zombie";
+	private static String MATH_BEGINS = "Math begins";
+	private static String CHESS_OK = "Chess OK";
+	private static String SKATER_KID = "Skater kid";
+	private static String MONSTER_CAKE = "Monster cake";
+	private static String PACY = "Pacy";
+	private static String CAT_RUNNER = "Cat runner";
+	private static String GALAXY_STORM = "Galaxy storm";
+	private static String ONE_TAP_ZOMBIE = "One tap zombie";
+	private static String AMAZING_LINES = "Amazing lines";
+	private static String CHESS_CLASSIC = "Chess classic";
+	
 	public static EbolaAppsList getListOfApps() {
-    	String[] apps = new String[3];
-     	apps[0] = "Bubble breaker";
-    	apps[1] = "Candy swipe slots";
-    	apps[2] = "Blood zombie";
+    	String[] apps = new String[13];
+     	apps[0] = BUBBLE_BREAKER;
+    	apps[1] = CANDY_SWIPE_SLOTS;
+    	apps[2] = BLOOD_ZOMBIE;
+    	apps[3] = MATH_BEGINS;
+    	apps[4] = CHESS_OK;
+    	apps[5] = SKATER_KID;
+    	apps[6] = MONSTER_CAKE;
+    	apps[7] = PACY;
+    	apps[8] = CAT_RUNNER;
+    	apps[9] = GALAXY_STORM;
+    	apps[10] = ONE_TAP_ZOMBIE;
+    	apps[11] = AMAZING_LINES;
+    	apps[12] = CHESS_CLASSIC;
     	return new EbolaAppsList(apps);
 	}
 
+	private static Integer[] bubleBreakerIths = new Integer[] {4, 11, 14, 21, 28, 34, 84, 95};
+	private static Integer[] bubleBreakerNums = new Integer[] {281, 707, 873, 1123, 1284, 1392, 1886, 1992};
+	private static Integer[] bubleBreakerAverages2inputs = new Integer[] {0,
+			320, 700, 900, 1000, 1300,
+			1470, 1700, 1800, 1940, 2080,
+			2200, 2340, 2500, 2640, 2760,
+			2900, 3040, 3120, 3200, 3340};
+	private static Integer[] bubleBreakerAverages3inputs = new Integer[] {0,
+			320, 700, 900, 1100, 1400,
+			1580, 1740, 1880, 2120, 2260,
+			2400, 2540, 2700, 2900, 3140,
+			3280, 3440, 3580, 3700, 3840};
+	private static Integer[] bubleBreakerAverages4inputs = new Integer[] {0,
+			320, 700, 900, 1000, 1100,
+			1140, 1220, 1340, 1420, 1520,
+			1600, 1650, 1700, 1760, 1840,
+			1900, 1980, 2040, 2110, 2180};
+
 	public static EbolaChart getBasicChart(String appName, Integer inputDataLength) {
-		if (inputDataLength == null || inputDataLength == 2) {
-	    	EbolaChart chart = new EbolaChart();
-	    	chart.addRangeItem(1, 0, 10);
-	    	chart.addRangeItem(2, 2, 13);
-	    	chart.addRangeItem(3, 5, 18);
-	    	chart.addRangeItem(4, 17, 29);
-	    	chart.addRangeItem(5, 18, 35);
-	    	chart.addRangeItem(6, 23, 45);
-	    	chart.addRangeItem(7, 28, 53);
-	    	chart.addRangeItem(8, 35, 68);
-	    	chart.addRangeItem(9, 45, 100);
-	    	chart.addRangeItem(10, 50, 123);
-	    	chart.addAverageItem(1, 5);
-	    	chart.addAverageItem(2, 8);
-	    	chart.addAverageItem(3, 10);
-	    	chart.addAverageItem(4, 15);
-	    	chart.addAverageItem(5, 20);
-	    	chart.addAverageItem(6, 30);
-	    	chart.addAverageItem(7, 33);
-	    	chart.addAverageItem(8, 55);
-	    	chart.addAverageItem(9, 60);
-	    	chart.addAverageItem(10, 70);
-			return chart;
-		} else if (inputDataLength == 3) {
-	    	EbolaChart chart = new EbolaChart();
-	    	chart.addRangeItem(1, 0, 10);
-	    	chart.addRangeItem(2, 2, 13);
-	    	chart.addRangeItem(3, 5, 18);
-	    	chart.addRangeItem(4, 17, 29);
-	    	chart.addRangeItem(5, 28, 35);
-	    	chart.addRangeItem(6, 33, 50);
-	    	chart.addRangeItem(7, 38, 86);
-	    	chart.addRangeItem(8, 45, 98);
-	    	chart.addRangeItem(9, 85, 150);
-	    	chart.addRangeItem(10, 100, 180);
-	    	chart.addAverageItem(1, 5);
-	    	chart.addAverageItem(2, 8);
-	    	chart.addAverageItem(3, 10);
-	    	chart.addAverageItem(4, 22);
-	    	chart.addAverageItem(5, 30);
-	    	chart.addAverageItem(6, 40);
-	    	chart.addAverageItem(7, 63);
-	    	chart.addAverageItem(8, 75);
-	    	chart.addAverageItem(9, 100);
-	    	chart.addAverageItem(10, 120);
-			return chart;			
+		// TODO avoid this in js
+		String cleanAppName = appName.replace("\"", "");
+		if (BUBBLE_BREAKER.equals(cleanAppName)) {		
+			if (inputDataLength == null || inputDataLength == 2) {
+		    	EbolaChart chart = new EbolaChart();
+		    	addItemsStep5(chart, bubleBreakerAverages2inputs);
+		    	addConfidenceIntervals(chart, null);
+				return chart;
+			} else if (inputDataLength == 3) {
+		    	EbolaChart chart = new EbolaChart();
+		    	addItemsStep5(chart, bubleBreakerAverages3inputs);
+		    	addConfidenceIntervals(chart, 5);
+				return chart;
+			} else {
+		    	EbolaChart chart = new EbolaChart();
+		    	addItemsStep5(chart, bubleBreakerAverages4inputs);
+		    	addConfidenceIntervals(chart, 8);
+				return chart;
+			}
 		} else {
-	    	EbolaChart chart = new EbolaChart();
-	    	chart.addRangeItem(1, 0, 10);
-	    	chart.addRangeItem(2, 2, 13);
-	    	chart.addRangeItem(3, 5, 18);
-	    	chart.addRangeItem(4, 17, 29);
-	    	chart.addRangeItem(5, 48, 85);
-	    	chart.addRangeItem(6, 103, 125);
-	    	chart.addRangeItem(7, 108, 153);
-	    	chart.addRangeItem(8, 125, 168);
-	    	chart.addRangeItem(9, 169, 200);
-	    	chart.addRangeItem(10, 190, 223);
-	    	chart.addAverageItem(1, 5);
-	    	chart.addAverageItem(2, 8);
-	    	chart.addAverageItem(3, 10);
-	    	chart.addAverageItem(4, 25);
-	    	chart.addAverageItem(5, 60);
-	    	chart.addAverageItem(6, 110);
-	    	chart.addAverageItem(7, 123);
-	    	chart.addAverageItem(8, 145);
-	    	chart.addAverageItem(9, 180);
-	    	chart.addAverageItem(10, 200);
-			return chart;						
+			return null;
 		}
 	}
 
+	private static void addItemsStep5(EbolaChart chart, Integer... bubleBreakerAverages2inputs2) {
+		addItemsStep(chart, 5, bubleBreakerAverages2inputs2);
+	}
+
+	private static void addConfidenceIntervals(EbolaChart chart, Integer wider) {
+		for (EbolaAverageItem average : chart.getAverages()) {
+			int day = average.getDayNumber();
+			float av = average.getAverage();
+			float perc = (float) (0.1 +  ((float)day)/2000);
+			if (wider != null) {
+				perc = perc + ((float)day * wider)/2000;
+			}
+			float min = av * (1 - perc);
+			float max = av * (1 + perc);
+			chart.addRangeItem(day, min, max);
+		}
+	}
+
+
+	private static void addItemsStep(EbolaChart chart, int step, Integer... args) {
+		int day = 0;
+		for (int arg: args) {
+			chart.addAverageItem(day, arg);
+			day += step;
+		}
+		
+	}
+		
+
 	public static EbolaDataTable getBasicDataTable(String appName) {
-		Integer[] iths = new Integer[2];
-		iths[0] = 1;
-		iths[1] = 3;
-		Integer[] nums = new Integer[2];
-		nums[0] = 0;
-		nums[1] = 7;
+		int size = 2;
+		Integer[] iths = new Integer[size];
+		Integer[] nums = new Integer[size];
+		// TODO avoid this in js
+		String cleanAppName = appName.replace("\"", "");
+		if (BUBBLE_BREAKER.equals(cleanAppName)) {
+			for (int i = 0; i < size; i++) {
+				iths[i] = bubleBreakerIths[i];
+				nums[i] = bubleBreakerNums[i];
+			}
+		}
 		return new EbolaDataTable(iths, nums, appName);
 	}
 	
-	public static EbolaDataTable getBasicRealDataTable(String appName) {
-		Integer[] iths = new Integer[3];
-		iths[0] = 6;
-		iths[1] = 7;
-		iths[2] = 9;
-		Integer[] nums = new Integer[3];
-		nums[0] = 8;
-		nums[1] = 9;
-		nums[2] = 10;
+	public static EbolaDataTable getBasicRealDataTable(String appName, Integer inputDataLength) {
+		int size = 6;
+		if (inputDataLength != null && inputDataLength > 2) {
+			size = 8 - inputDataLength;
+		}
+		Integer[] iths = new Integer[size];
+		Integer[] nums = new Integer[size];
+		// TODO avoid this in js
+		String cleanAppName = appName.replace("\"", "");
+		if (BUBBLE_BREAKER.equals(cleanAppName)) {
+			for (int i = 1; i <= size; i++) {
+				iths[size - i] = bubleBreakerIths[8 - i];
+				nums[size - i] = bubleBreakerNums[8 - i];
+			}
+		}
 		return new EbolaDataTable(iths, nums, appName);
 	}
 

@@ -17,10 +17,17 @@ public class RealDataFromApp {
 
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
-    public EbolaDataTable getUserName(@Context SecurityContext securityContext, String appName) {
+    public EbolaDataTable getUserName(@Context SecurityContext securityContext, EbolaDataTable data) {
     	if (securityContext.getUserPrincipal() == null) {
     		throw new EbolaAuthenticationException("body method");
     	}
-        return EbolaDatabase.getBasicRealDataTable(appName);
+    	int length = 0;
+    	for (Integer i : data.getIths()) {
+    		if (i == null) {
+    			break;
+    		}
+    		length++;
+    	}
+        return EbolaDatabase.getBasicRealDataTable(data.getAppName(), length);
     }
 }

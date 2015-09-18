@@ -407,8 +407,8 @@
           });
         });
 
-        // Submit data controller
-        $('#submit-data').click(function(){
+        // utility for getting input from form
+        var get_input_data = function () {
           ith1 = document.getElementById('ith1').value
           ith2 = document.getElementById('ith2').value
           ith3 = document.getElementById('ith3').value
@@ -436,10 +436,15 @@
             ],
             "appName":  select.options[select.selectedIndex].text
           }
+          return input_data;
+        }
+
+        // Submit data controller
+        $('#submit-data').click(function(){
           $.ajax({
             url: 'http://localhost:8080/ebola-jersey-server/webapi/submit-data',
             type: 'PUT',
-            data: JSON.stringify(input_data),
+            data: JSON.stringify(get_input_data()),
             contentType: 'application/json',
             headers: {
               "Authorization": 'Basic ' + auth
@@ -484,11 +489,10 @@
 
         // Get real data controller
         $('#get-real-data').click(function () {
-          var app_name = select.options[select.selectedIndex].text;
           $.ajax({
             url: 'http://localhost:8080/ebola-jersey-server/webapi/get-real-data',
             type: 'PUT',
-            data: JSON.stringify(app_name),
+            data: JSON.stringify(get_input_data()),
             contentType: 'application/json',
             headers: {
               "Authorization": 'Basic ' + auth
@@ -711,7 +715,7 @@
                         // (col-lg-8 is 67% of window according to css)
                         var w = Math.round($(window).width() * 0.55);
                         var h = Math.round(w / 2);
-                        this.setSize(w, h, doAnimation = {duration: 800, easing: "swing"});
+                        this.setSize(w, h, doAnimation = {duration: 500, easing: "linear"});
                     }
                 }
               },
@@ -730,10 +734,44 @@
                   }
               },
 
+              plotOptions: {
+                  series: {
+                      point: {
+                          events: {
+                              mouseOver: function () {
+                                  var chart = this.series.chart;
+                                  if (!chart.lbl) {
+                                      chart.lbl = chart.renderer.label('')
+                                          .attr({
+                                              padding: 10,
+                                              r: 10,
+                                              fill: Highcharts.getOptions().colors[1]
+                                          })
+                                          .css({
+                                              color: '#FFFFFF'
+                                          })
+                                          .add();
+                                  }
+                                  chart.lbl
+                                      .show()
+                                      .attr({
+                                          text: 'x: ' + this.x + ', y: ' + this.y
+                                      });
+                              }
+                          }
+                      },
+                      events: {
+                          mouseOut: function () {
+                              if (this.chart.lbl) {
+                                  this.chart.lbl.hide();
+                              }
+                          }
+                      }
+                  }
+              },
+
               tooltip: {
-                  crosshairs: true,
-                  shared: true,
-                  valueSuffix: ''
+                  enabled: false
               },
 
               legend: {

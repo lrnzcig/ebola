@@ -19,7 +19,7 @@ public class DataFromApp {
 
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
-    public EbolaAppData getUserName(@Context SecurityContext securityContext, String appName) {
+    public EbolaAppData getAppData(@Context SecurityContext securityContext, String appName) {
     	if (securityContext.getUserPrincipal() == null) {
     		throw new EbolaAuthenticationException("body method");
     	}
