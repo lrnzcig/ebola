@@ -317,7 +317,7 @@
         var selected_app_controller = function () {
           var app_name = select.options[select.selectedIndex].text;
           $.ajax({
-            url: 'http://localhost:8080/ebola-jersey-server/webapi/data-from-app',
+            url: 'http://localhost:8080/samoa/webapi/data-from-app',
             type: 'PUT',
             data: JSON.stringify(app_name),
             contentType: 'application/json',
@@ -358,7 +358,7 @@
         $('#log-in').click(function(){
           auth = btoa(document.getElementById('username').value + ':' + document.getElementById('password').value);
           $.ajax({
-            url: 'http://localhost:8080/ebola-jersey-server/webapi/login',
+            url: 'http://localhost:8080/samoa/webapi/login',
             type: 'GET',
             headers: {
               "Authorization": 'Basic ' + auth
@@ -442,7 +442,7 @@
         // Submit data controller
         $('#submit-data').click(function(){
           $.ajax({
-            url: 'http://localhost:8080/ebola-jersey-server/webapi/submit-data',
+            url: 'http://localhost:8080/samoa/webapi/submit-data',
             type: 'PUT',
             data: JSON.stringify(get_input_data()),
             contentType: 'application/json',
@@ -490,7 +490,7 @@
         // Get real data controller
         $('#get-real-data').click(function () {
           $.ajax({
-            url: 'http://localhost:8080/ebola-jersey-server/webapi/get-real-data',
+            url: 'http://localhost:8080/samoa/webapi/get-real-data',
             type: 'PUT',
             data: JSON.stringify(get_input_data()),
             contentType: 'application/json',

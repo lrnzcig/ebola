@@ -13,6 +13,10 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+    <build>
+        <finalName>samoa</finalName>
+    </build>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
