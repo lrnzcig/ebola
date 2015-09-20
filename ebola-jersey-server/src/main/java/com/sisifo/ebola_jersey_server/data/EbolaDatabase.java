@@ -78,20 +78,20 @@ public class EbolaDatabase {
 	private static Integer[] bloodZombieIths = new Integer[] {6, 8, 13, 20, 28, 70};
 	private static Integer[] bloodZombieNums = new Integer[] {2301, 3493, 6359, 9261, 11962, 20307};
 	private static Integer[] bloodZombieAverages2inputs = new Integer[] {0,
-			320, 700, 900, 1000, 1300,
-			1470, 1700, 1800, 1940, 2080,
-			2200, 2340, 2500, 2640, 2760,
-			2900, 3040, 3120, 3200, 3340};
+			2000, 3800, 5500, 6800, 7400,
+			8120, 8840, 9560, 10280, 11000,
+			11500, 12000, 12500, 13000, 13500,
+			14200, 14900, 15600, 16300, 17000};
 	private static Integer[] bloodZombieAverages3inputs = new Integer[] {0,
-			320, 700, 900, 1100, 1400,
-			1580, 1740, 1880, 2120, 2260,
-			2400, 2540, 2700, 2900, 3140,
-			3280, 3440, 3580, 3700, 3840};
+			2000, 3800, 7000, 9000, 10050,
+			11440, 12830, 14220, 15610, 17000,
+			17900, 18800, 19700, 20600, 21500,
+			22500, 23500, 24500, 25500, 26500};
 	private static Integer[] bloodZombieAverages4inputs = new Integer[] {0,
-			320, 700, 900, 1000, 1100,
-			1140, 1220, 1340, 1420, 1520,
-			1600, 1650, 1700, 1760, 1840,
-			1900, 1980, 2040, 2110, 2180};
+			2000, 3800, 6500, 8000, 9600,
+			10800, 12000, 13300, 14400, 15500,
+			16400, 17300, 18200, 19100, 20000,
+			20800, 21600, 22400, 23200, 24000};
 
 	private static Integer[] mathBeginsIths = new Integer[] {6, 8, 13, 20, 18, 70};
 	private static Integer[] mathBeginsNums = new Integer[] {98, 131, 170, 186, 200, 281};
@@ -315,17 +315,17 @@ public class EbolaDatabase {
 			if (inputDataLength == null || inputDataLength == 2) {
 		    	EbolaChart chart = new EbolaChart();
 		    	addItemsStep5(chart, bloodZombieAverages2inputs);
-		    	addConfidenceIntervals(chart, null);
+		    	addConfidenceIntervals(chart, 3f);
 				return chart;
 			} else if (inputDataLength == 3) {
 		    	EbolaChart chart = new EbolaChart();
 		    	addItemsStep5(chart, bloodZombieAverages3inputs);
-		    	addConfidenceIntervals(chart, (float) 5);
+		    	addConfidenceIntervals(chart, 12f);
 				return chart;
 			} else {
 		    	EbolaChart chart = new EbolaChart();
 		    	addItemsStep5(chart, bloodZombieAverages4inputs);
-		    	addConfidenceIntervals(chart, (float) 8);
+		    	addConfidenceIntervals(chart, 0.5f);
 				return chart;
 			}
 		} else if (MATH_BEGINS.equals(cleanAppName)) {		
@@ -627,9 +627,10 @@ public class EbolaDatabase {
 				nums[size - i] = candySwipeSlotsNums[8 - i];
 			}
 		} else if (BLOOD_ZOMBIE.equals(cleanAppName)) {
+			size = size - 2;
 			for (int i = 1; i <= size; i++) {
-				iths[size - i] = bloodZombieIths[8 - i];
-				nums[size - i] = bloodZombieNums[8 - i];
+				iths[size - i] = bloodZombieIths[6 - i];
+				nums[size - i] = bloodZombieNums[6 - i];
 			}
 		} else if (MATH_BEGINS.equals(cleanAppName)) {
 			for (int i = 1; i <= size; i++) {
