@@ -347,6 +347,12 @@
               var chart = ChartSingleton.getInstance();
               if (data.dataTable) {
                 set_data_into_table(data.dataTable);
+                if (! chart_is_collapsed) {
+                  document.getElementById("chart-collapse").click();
+                  chart_is_collapsed = true;
+                }
+                chart.set_scatter_data_real(data);
+                chart.update();
               } else {
                 console.log("Error in response from server. No data.dataTable")
               }
