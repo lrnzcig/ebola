@@ -185,7 +185,6 @@
                           </div>
                       </div>
                       <div id="high-charts-container-parent" class="ibox-content">
-                        <!--  div id="high-charts-container" style="min-width: 675px; height: 400px; margin: 0 auto"></div>-->
                         <div id="high-charts-container"></div>
 
                       </div>
@@ -250,8 +249,21 @@
         document.getElementById("get-real-form-collapse").click();
 
         document.getElementById("chart-collapse").click();
+
+        var is_chart_collapsed = function() {
+          var button_chart_collapse = $(document.getElementById("chart-collapse")).find("i");
+          var classList = button_chart_collapse.attr("class").split(/\s+/);
+          var arrayLength = classList.length;
+          for (var i=0; i < arrayLength; i++) {
+            if (classList[i] == "fa-chevron-up") {
+              return false;
+            }
+            if (classList[i] == "fa-chevron-down") {
+              return true;
+            }
+          }
+        };
         // load empty chart so that it gets size
-        var chart_is_collapsed = true;
         var chart = ChartSingleton.getInstance();
         chart.update();
 
@@ -352,9 +364,8 @@
                 set_data_into_table(data.dataTable);
                 chart.scatter_data_real = null;
                 chart.update();
-                if (! chart_is_collapsed) {
+                if (! is_chart_collapsed()) {
                   document.getElementById("chart-collapse").click();
-                  chart_is_collapsed = true;
                 }
               } else {
                 console.log("Error in response from server. No data.dataTable")
@@ -480,9 +491,8 @@
             success: function(data, textStatus, jqXHR) {
               var chart = ChartSingleton.getInstance();
               if (data.ranges) {
-                if (chart_is_collapsed) {
+                if (is_chart_collapsed()) {
                   document.getElementById("chart-collapse").click();
-                  chart_is_collapsed = false;
                 }
                 chart.set_ranges(data.ranges);
                 chart.set_averages(data.averages);
@@ -528,7 +538,7 @@
             success: function(data, textStatus, jqXHR) {
               var chart = ChartSingleton.getInstance();
               if (data.iths) {
-                if (chart_is_collapsed) {
+                if (is_chart_collapsed()) {
                   document.getElementById("chart-collapse").click();
                   chart_is_collapsed = false;
                 }
