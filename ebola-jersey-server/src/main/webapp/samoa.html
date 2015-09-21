@@ -248,9 +248,12 @@
 
         document.getElementById("submit-form-collapse").click();
         document.getElementById("get-real-form-collapse").click();
-        document.getElementById("chart-collapse").click();
 
+        document.getElementById("chart-collapse").click();
+        // load empty chart so that it gets size
         var chart_is_collapsed = true;
+        var chart = ChartSingleton.getInstance();
+        chart.update();
 
         // when app is selected from combo, puts data into table
         // TODO there must be a way to improve this code !!!
@@ -347,12 +350,12 @@
               var chart = ChartSingleton.getInstance();
               if (data.dataTable) {
                 set_data_into_table(data.dataTable);
+                chart.scatter_data_real = null;
+                chart.update();
                 if (! chart_is_collapsed) {
                   document.getElementById("chart-collapse").click();
                   chart_is_collapsed = true;
                 }
-                chart.set_scatter_data_real(data);
-                chart.update();
               } else {
                 console.log("Error in response from server. No data.dataTable")
               }
@@ -477,14 +480,14 @@
             success: function(data, textStatus, jqXHR) {
               var chart = ChartSingleton.getInstance();
               if (data.ranges) {
-                chart.set_ranges(data.ranges);
-                chart.set_averages(data.averages);
-                chart.set_scatter_data(input_data)
-                chart.update();
                 if (chart_is_collapsed) {
                   document.getElementById("chart-collapse").click();
                   chart_is_collapsed = false;
                 }
+                chart.set_ranges(data.ranges);
+                chart.set_averages(data.averages);
+                chart.set_scatter_data(input_data)
+                chart.update();
                 document.getElementById("chart").focus()
               } else {
                 console.log("Error in response from server. No data.ranges")
@@ -525,12 +528,12 @@
             success: function(data, textStatus, jqXHR) {
               var chart = ChartSingleton.getInstance();
               if (data.iths) {
-                chart.set_scatter_data_real(data);
-                chart.update();
                 if (chart_is_collapsed) {
                   document.getElementById("chart-collapse").click();
                   chart_is_collapsed = false;
                 }
+                chart.set_scatter_data_real(data);
+                chart.update();
                 document.getElementById("get-real-form-collapse").click();
                 document.getElementById("chart").focus()
               } else {
@@ -561,8 +564,6 @@
             scatter_data: null,
             scatter_data_real: null,
             update: function () {
-              //$("#high-charts-container").remove();
-              //$("#high-charts-container-parent").append('<div id="high-charts-container" style="min-width: 675px; height: 400px; margin: 0 auto"></div>')
               chart_update();
             },
             set_ranges: function(ranges) {
@@ -616,12 +617,6 @@
 
         };
       })();
-
-      window.addEventListener('resize', function() {
-        // workaround for making the chart responsive
-        var chart = ChartSingleton.getInstance();
-        chart.update();
-      }, true);
 
       get_default_ranges = function() {
         return [
@@ -713,18 +708,6 @@
               scatter_data_real = chart.scatter_data_real;
 
           $('#high-charts-container').highcharts({
-
-              chart: {
-                events: {
-                    load: function (event) {
-                        // workaround for making the chart responsive
-                        // (col-lg-8 is 67% of window according to css)
-                        var w = Math.round($(window).width() * 0.55);
-                        var h = Math.round(w / 2);
-                        this.setSize(w, h, doAnimation = {duration: 500, easing: "linear"});
-                    }
-                }
-              },
 
               title: {
                   text: 'Number of downloads versus time'
