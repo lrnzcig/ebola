@@ -248,10 +248,11 @@
         document.getElementById("submit-form-collapse").click();
         document.getElementById("get-real-form-collapse").click();
 
-        document.getElementById("chart-collapse").click();
+        var chart_collapse = document.getElementById("chart-collapse");
+        chart_collapse.click();
 
         var is_chart_collapsed = function() {
-          var button_chart_collapse = $(document.getElementById("chart-collapse")).find("i");
+          var button_chart_collapse = $(chart_collapse).find("i");
           var classList = button_chart_collapse.attr("class").split(/\s+/);
           var arrayLength = classList.length;
           for (var i=0; i < arrayLength; i++) {
@@ -365,7 +366,7 @@
                 chart.scatter_data_real = null;
                 chart.update();
                 if (! is_chart_collapsed()) {
-                  document.getElementById("chart-collapse").click();
+                  chart_collapse.click();
                 }
               } else {
                 console.log("Error in response from server. No data.dataTable")
@@ -492,7 +493,7 @@
               var chart = ChartSingleton.getInstance();
               if (data.ranges) {
                 if (is_chart_collapsed()) {
-                  document.getElementById("chart-collapse").click();
+                  chart_collapse.click();
                 }
                 chart.set_ranges(data.ranges);
                 chart.set_averages(data.averages);
@@ -539,7 +540,7 @@
               var chart = ChartSingleton.getInstance();
               if (data.iths) {
                 if (is_chart_collapsed()) {
-                  document.getElementById("chart-collapse").click();
+                  chart_collapse.click();
                   chart_is_collapsed = false;
                 }
                 chart.set_scatter_data_real(data);
