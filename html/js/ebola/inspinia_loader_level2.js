@@ -7,6 +7,8 @@ define("inspinia_loader_level2",
 	"chosen",
 	"icheck",
 	"highcharts",
+	"jquerysteps",
+	"jqueryvalidate",
 	"inspinia_loader_level3"
 ]
 

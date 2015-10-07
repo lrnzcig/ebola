@@ -11,6 +11,7 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="css/plugins/steps/jquery.steps.css" rel="stylesheet">
     <link href="css/plugins/chosen/chosen.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -41,6 +42,107 @@
                 </div>
             </div>
             <div class="wrapper wrapper-content animated fadeInRight">
+
+              <div id="wizard-row" class="row">
+                <div class="col-lg-12">
+                  <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                      <h5>Demo wizzard</h5>
+                      <div class="ibox-tools">
+                          <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                          </a>
+                          <a class="close-link">
+                            <i class="fa fa-times"></i>
+                          </a>
+                      </div>
+                    </div>
+
+                    <div class="ibox-content">
+                        <p>
+                            This wizzard shows the steps for obtaining the prediction of your app downloads.
+                        </p>
+                        <div id="wizard">
+                            <h1>Login</h1>
+                            <div class="step-content">
+                                <div class="text-center m-t-md">
+                                <h2>Login into the system</h2>
+                                <p>
+                                    (Please note, you don't have to do anything!
+                                    Actually, anything you write will be overriden when you press the "Next" button.)
+                                </p>
+                                </div>
+                            </div>
+
+                            <h1>Your initial prediction</h1>
+                            <div class="step-content">
+                                <div class="text-center m-t-md">
+                                    <h2>Feed the model with your prediction of downloads for the first few days
+                                    (which will depend also on your marketing campaign)</h2>
+                                    <p>
+                                        We’ve tested the results of SAMOA for 12 real apps during the period from XXX to XXX.
+                                        Let’s take one of them, and let's feed the model with the prediction for days 4 and 11.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <h1>First curve</h1>
+                            <div class="step-content">
+                                <div class="text-center m-t-md">
+                                    <h2>Obtain the first curve</h2>
+                                    <p>
+                                        SAMOA calculates the initial curve of predicted downloads.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <h1>Feed it again</h1>
+                            <div class="step-content">
+                                <div class="text-center m-t-md">
+                                    <h2>You've got now some fresh data of real downloads</h2>
+                                    <p>
+                                        In our example app, after 14 days have passed, we get the real number of downloads,
+                                        and we feed that figure into the model
+                                    </p>
+                                </div>
+                            </div>
+
+                            <h1>Improved curve</h1>
+                            <div class="step-content">
+                                <div class="text-center m-t-md">
+                                    <h2>Get a more accurate estimate</h2>
+                                    <p>
+                                        SAMOA calculates the initial curve of predicted downloads.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <h1>Feed it once more</h1>
+                            <div class="step-content">
+                                <div class="text-center m-t-md">
+                                    <h2>You've got once again some fresh data of real downloads</h2>
+                                    <p>
+                                        In our example app, at day 21, we feed the model again with the real number of downloads.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <h1>Even better curve</h1>
+                            <div class="step-content">
+                                <div class="text-center m-t-md">
+                                    <h2>Get a more accurate estimate</h2>
+                                    <p>
+                                        This last curve is already accurate enough to predict downloads for the following 3 and a half months.
+                                        In the following figure, we add in red the real number of downloads for this app up to the 95th day.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <div id="log-in-row" class="row">
                   <div class="col-lg-5">
@@ -171,7 +273,7 @@
               </div>
 
               <div id="chart" class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                   <div class="ibox float-e-margins">
                       <div class="ibox-title">
                           <h5>Chart</h5>
@@ -203,7 +305,7 @@
     </div>
 
     <script data-main="js/ebola/main" src="js/require/require-2.1.20.min.js"></script>
-    
+
 </body>
 
 </html>

@@ -41,6 +41,55 @@ define("main",
     // ebola button controllers
 		$(document).ready(function(){
 
+			// manage steps of the wizard
+			$("#wizard").steps({
+			  onStepChanging: function (event, currentIndex, newIndex) {
+					if (currentIndex == 0) {
+						// after login
+						document.getElementById("log-in-collapse").click();
+						document.getElementById("submit-form-collapse").click();
+					} else if (currentIndex == 1 | newIndex == 2) {
+						cleanup_data_form();
+						document.getElementById('ith1').value = 4;
+						document.getElementById('num1').value = 281;
+						document.getElementById('ith2').value = 11;
+						document.getElementById('num2').value = 707;
+
+						var chart = chart_controller.getChartInstance();
+						if (is_chart_collapsed()) {
+								chart_collapse.click();
+						}
+						chart.ranges = get_default_ranges();
+						chart.averages = get_default_averages();
+						chart.scatter_data = [];
+						chart_view_update();
+						document.getElementById("chart").focus()
+					}
+			    return true;
+			  }
+			});
+
+
+			// TODO there must be a way to improve this code !!!
+			var cleanup_data_form = function(data) {
+				document.getElementById('ith1').value = null;
+				document.getElementById('num1').value = null;
+				document.getElementById('ith2').value = null;
+				document.getElementById('num2').value = null;
+				document.getElementById('ith3').value = null;
+				document.getElementById('num3').value = null;
+				document.getElementById('ith4').value = null;
+				document.getElementById('num4').value = null;
+				document.getElementById('ith5').value = null;
+				document.getElementById('num5').value = null;
+				document.getElementById('ith6').value = null;
+				document.getElementById('num6').value = null;
+				document.getElementById('ith7').value = null;
+				document.getElementById('num7').value = null;
+				document.getElementById('ith8').value = null;
+				document.getElementById('num8').value = null;
+			};
+
 			document.getElementById("submit-form-collapse").click();
 			document.getElementById("get-real-form-collapse").click();
 
@@ -251,164 +300,19 @@ define("main",
 			// load empty chart so that it gets size
 			chart_view_update();
 
-			// when app is selected from combo, puts data into table
-			// TODO there must be a way to improve this code !!!
-			var set_data_into_table = function(data) {
-				if (data.iths[0]) {
-					document.getElementById('ith1').value = data.iths[0];
-					document.getElementById('num1').value = data.nums[0];
-				} else {
-					document.getElementById('ith1').value = null;
-					document.getElementById('num1').value = null;
-				}
-				if (data.iths[1]) {
-					document.getElementById('ith2').value = data.iths[1];
-					document.getElementById('num2').value = data.nums[1];
-				} else {
-					document.getElementById('ith2').value = null;
-					document.getElementById('num2').value = null;
-				}
-				if (data.iths[2]) {
-					document.getElementById('ith3').value = data.iths[2];
-					document.getElementById('num3').value = data.nums[2];
-				} else {
-					document.getElementById('ith3').value = null;
-					document.getElementById('num3').value = null;
-				}
-				if (data.iths[3]) {
-					document.getElementById('ith4').value = data.iths[3];
-					document.getElementById('num4').value = data.nums[3];
-				} else {
-					document.getElementById('ith4').value = null;
-					document.getElementById('num4').value = null;
-				}
-				if (data.iths[4]) {
-					document.getElementById('ith5').value = data.iths[4];
-					document.getElementById('num5').value = data.nums[4];
-				} else {
-					document.getElementById('ith5').value = null;
-					document.getElementById('num5').value = null;
-				}
-				if (data.iths[5]) {
-					document.getElementById('ith6').value = data.iths[5];
-					document.getElementById('num6').value = data.nums[5];
-				} else {
-					document.getElementById('ith6').value = null;
-					document.getElementById('num6').value = null;
-				}
-				if (data.iths[6]) {
-					document.getElementById('ith7').value = data.iths[6];
-					document.getElementById('num7').value = data.nums[6];
-				} else {
-					document.getElementById('ith7').value = null;
-					document.getElementById('num7').value = null;
-				}
-				if (data.iths[7]) {
-					document.getElementById('ith8').value = data.iths[7];
-					document.getElementById('num8').value = data.nums[7];
-				} else {
-					document.getElementById('ith8').value = null;
-					document.getElementById('num8').value = null;
-				}
-			};
-
 			// controller factory
 			var selected_app_controller = factory.createController("combo_controller");
 			selected_app_controller.init("select-apps");
-
-			// Combo controller (after selection of app)
-			//var selected_app_controller = function () {
-			//	var app_name = select.options[select.selectedIndex].text;
-				//success: function(data, textStatus, jqXHR) {
-						//var chart = ChartSingleton.getInstance();
-						//if (data.dataTable) {
-							//set_data_into_table(data.dataTable);
-							//chart.scatter_data_real = null;
-							//chart.update();
-							//if (! is_chart_collapsed()) {
-								//chart_collapse.click();
-							//}
-						//} else {
-							//console.log("Error in response from server. No data.dataTable")
-						//}
-					//}
-			//}
+			selected_app_controller.initData(["Bubble breaker"]);
 
 			// Login button controller
 			$('#log-in').click(function(){
 				return;
-					//success: function(data, textStatus, jqXHR) {
-						//select = document.getElementById("select-apps");
-
-						// add elements to select
-						// TODO old elements should be removed!
-						//var arrayLength = data.apps.length;
-						//for (var i=0; i < arrayLength; i++) {
-							//opt = document.createElement("option");
-							//opt.value = data.apps[i];
-							//opt.text = data.apps[i];
-							//select.appendChild(opt);
-						//}
-
-						//$(select).trigger("chosen:updated");
-
-						// controller for the combo => fetches new data
-						//$(select).chosen().change(selected_app_controller);
-
-						//document.getElementById("log-in-collapse").click();
-						//document.getElementById("submit-form-collapse").click();
-
 			});
-
-			// utility for getting input from form
-			var get_input_data = function () {
-				ith1 = document.getElementById('ith1').value
-				ith2 = document.getElementById('ith2').value
-				ith3 = document.getElementById('ith3').value
-				ith4 = document.getElementById('ith4').value
-				ith5 = document.getElementById('ith5').value
-				ith6 = document.getElementById('ith6').value
-				ith7 = document.getElementById('ith7').value
-				ith8 = document.getElementById('ith8').value
-				num1 = document.getElementById('num1').value
-				num2 = document.getElementById('num2').value
-				num3 = document.getElementById('num3').value
-				num4 = document.getElementById('num4').value
-				num5 = document.getElementById('num5').value
-				num6 = document.getElementById('num6').value
-				num7 = document.getElementById('num7').value
-				num8 = document.getElementById('num8').value
-				input_data = {
-					"iths" : [
-						//{"1": ith1, "2": ith2, "3": ith3, "4": ith4, "5": ith5, "6": ith6, "7": ith7, "8": ith8}
-						ith1, ith2, ith3, ith4, ith5, ith6, ith7, ith8
-					],
-					"nums" : [
-						//{"1": num1, "2": num2, "3": num3, "4": num4, "5": num5, "6": num6, "7": num7, "8": num8}
-						num1, num2, num3, num4, num5, num6, num7, num8
-					],
-					"appName":  select.options[select.selectedIndex].text
-				}
-				return input_data;
-			}
 
 			// Submit data controller
 			$('#submit-data').click(function(){
 				return;
-					//success: function(data, textStatus, jqXHR) {
-						//var chart = ChartSingleton.getInstance();
-						//if (data.ranges) {
-							//if (is_chart_collapsed()) {
-								//chart_collapse.click();
-							//}
-							//chart.set_ranges(data.ranges);
-							//chart.set_averages(data.averages);
-							//chart.set_scatter_data(input_data)
-							//chart.update();
-							//document.getElementById("chart").focus()
-						//} else {
-							//console.log("Error in response from server. No data.ranges")
-						//}
 			});
 
 			// Get real data controller
@@ -450,6 +354,8 @@ require.config({
       highcharts: "../highcharts/highcharts",
       highchartsmore: "../highcharts/highcharts-more",
       highchartsexporting: "../highcharts/exporting",
+			jquerysteps: "../plugins/staps/jquery.steps.min",
+			jqueryvalidate: "../plugins/validate/jquery.validate.min",
       // here the custom controllers for this application
       custompageloader: "ebola_loader"
     }
