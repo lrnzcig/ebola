@@ -1,3 +1,10 @@
 target/
-html/*
-!html/ebola.html
+html/*.html
+html/js/*
+html/css
+html/email_templates
+html/font-awesome
+html/fonts
+html/img
+!html/samoa_demo.html
+!html/js/ebola
