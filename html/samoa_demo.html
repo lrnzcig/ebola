@@ -49,7 +49,7 @@
                     <div class="ibox-title">
                       <h5>Demo wizzard</h5>
                       <div class="ibox-tools">
-                          <a class="collapse-link">
+                          <a id="wizard-collapse" class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
                           </a>
                           <a class="close-link">
@@ -92,6 +92,7 @@
                                     <h2>Obtain the first curve</h2>
                                     <p>
                                         SAMOA calculates the initial curve of predicted downloads.
+                                        See chart at the bottom of the page; blue dots are the fed-in data and the curve is the prediction with confidence intervals.
                                     </p>
                                 </div>
                             </div>
@@ -112,7 +113,8 @@
                                 <div class="text-center m-t-md">
                                     <h2>Get a more accurate estimate</h2>
                                     <p>
-                                        SAMOA calculates the initial curve of predicted downloads.
+                                        SAMOA calculates the a more curve of predicted downloads.
+                                        See chart at the bottom of the page; there is an additional blue point, the curve has adapted to the data and needs wider confidence intervals.
                                     </p>
                                 </div>
                             </div>
@@ -268,8 +270,8 @@
                           </form>
 
                       </div>
+                    </div>
                   </div>
-                </div>
               </div>
 
               <div id="chart" class="row">
@@ -304,6 +306,13 @@
         </div>
     </div>
 
+    <script src="js/jquery-2.1.1.js"></script>
+    <script>
+      // collapse everything while require is charging
+      $(document).ready(function () {
+        document.getElementById("page-wrapper").style.visibility='hidden'
+      });
+    </script>
     <script data-main="js/ebola/main" src="js/require/require-2.1.20.min.js"></script>
 
 </body>

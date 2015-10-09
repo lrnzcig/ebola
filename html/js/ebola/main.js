@@ -44,24 +44,86 @@ define("main",
 			// manage steps of the wizard
 			$("#wizard").steps({
 			  onStepChanging: function (event, currentIndex, newIndex) {
-					if (currentIndex == 0) {
+					if (newIndex == 0) {
+						// before login
+						log_in_collapse_controller.uncollapse();
+						submit_form_collapse_controller.collapse();
+						get_real_form_collapse_controller.collapse();
+						chart_collapse_controller.collapse();
+					} else if (newIndex == 1) {
 						// after login
-						document.getElementById("log-in-collapse").click();
-						document.getElementById("submit-form-collapse").click();
-					} else if (currentIndex == 1 | newIndex == 2) {
+						log_in_collapse_controller.collapse();
 						cleanup_data_form();
-						document.getElementById('ith1').value = 4;
-						document.getElementById('num1').value = 281;
-						document.getElementById('ith2').value = 11;
-						document.getElementById('num2').value = 707;
+						submit_form_collapse_controller.uncollapse();
+						get_real_form_collapse_controller.collapse();
+						chart_collapse_controller.collapse();
+					} else if (newIndex == 2 | newIndex == 3) {
+						// first graph
+						log_in_collapse_controller.collapse();
+						get_real_form_collapse_controller.collapse();
 
+						// set data and 1st chart
+						cleanup_data_form();
+						document.getElementById('ith1').value = get_first_scatter_data()[0][0];
+						document.getElementById('num1').value = get_first_scatter_data()[0][1];
+						document.getElementById('ith2').value = get_first_scatter_data()[1][0];
+						document.getElementById('num2').value = get_first_scatter_data()[1][1];
+						submit_form_collapse_controller.uncollapse();
+
+						chart_collapse_controller.uncollapse();
 						var chart = chart_controller.getChartInstance();
-						if (is_chart_collapsed()) {
-								chart_collapse.click();
-						}
-						chart.ranges = get_default_ranges();
-						chart.averages = get_default_averages();
-						chart.scatter_data = [];
+						chart.ranges = get_first_ranges();
+						chart.averages = get_first_averages();
+						chart.scatter_data = get_first_scatter_data();
+						chart.scatter_data_real = [];
+						chart_view_update();
+						document.getElementById("chart").focus()
+					} else if (newIndex == 4 | newIndex == 5) {
+						// second graph
+						log_in_collapse_controller.collapse();
+						get_real_form_collapse_controller.collapse();
+
+						// set data and 1st chart
+						cleanup_data_form();
+						document.getElementById('ith1').value = get_second_scatter_data()[0][0];
+						document.getElementById('num1').value = get_second_scatter_data()[0][1];
+						document.getElementById('ith2').value = get_second_scatter_data()[1][0];
+						document.getElementById('num2').value = get_second_scatter_data()[1][1];
+						document.getElementById('ith3').value = get_second_scatter_data()[2][0];
+						document.getElementById('num3').value = get_second_scatter_data()[2][1];
+						submit_form_collapse_controller.uncollapse();
+
+						chart_collapse_controller.uncollapse();
+						var chart = chart_controller.getChartInstance();
+						chart.ranges = get_second_ranges();
+						chart.averages = get_second_averages();
+						chart.scatter_data = get_second_scatter_data();
+						chart.scatter_data_real = [];
+						chart_view_update();
+						document.getElementById("chart").focus()
+					} else if (newIndex == 6) {
+						// second graph
+						log_in_collapse_controller.collapse();
+						get_real_form_collapse_controller.collapse();
+
+						// set data and 1st chart
+						cleanup_data_form();
+						document.getElementById('ith1').value = get_third_scatter_data()[0][0];
+						document.getElementById('num1').value = get_third_scatter_data()[0][1];
+						document.getElementById('ith2').value = get_third_scatter_data()[1][0];
+						document.getElementById('num2').value = get_third_scatter_data()[1][1];
+						document.getElementById('ith3').value = get_third_scatter_data()[2][0];
+						document.getElementById('num3').value = get_third_scatter_data()[2][1];
+						document.getElementById('ith4').value = get_third_scatter_data()[3][0];
+						document.getElementById('num4').value = get_third_scatter_data()[3][1];
+						submit_form_collapse_controller.uncollapse();
+
+						chart_collapse_controller.uncollapse();
+						var chart = chart_controller.getChartInstance();
+						chart.ranges = get_third_ranges();
+						chart.averages = get_third_averages();
+						chart.scatter_data = get_third_scatter_data();
+						chart.scatter_data_real = get_scatter_data_real();
 						chart_view_update();
 						document.getElementById("chart").focus()
 					}
@@ -90,109 +152,201 @@ define("main",
 				document.getElementById('num8').value = null;
 			};
 
-			document.getElementById("submit-form-collapse").click();
-			document.getElementById("get-real-form-collapse").click();
+			// data for bubble breaker
+			get_first_ranges = function() {
+				return [
+						[0, 0, 0],
+						[5, 287.0, 353.0],
+						[10, 627.0, 774.0],
+						[15, 803.0, 997.0],
+						[20, 890.0, 1110.0],
+						[25, 1154.0, 1446.0],
+						[30, 1301.0, 1639.0],
+						[35, 1500.0, 1900.0],
+						[40, 1584.0, 2016.0],
+						[45, 1702.0, 2178.0],
+						[50, 1820.0, 2340.0],
+						[55, 1920.0, 2481.0],
+						[60, 2036.0, 2644.0],
+						[65, 2169.0, 2831.0],
+						[70, 2284.0, 2996.0],
+						[75, 2381.0, 3140.0],
+						[80, 2494.0, 3306.0],
+						[85, 2607.0, 3473.0],
+						[90, 2668.0, 3572.0],
+						[95, 2728.0, 3672.0],
+						[100, 2839.0, 3841.0]
+				]
+			};
 
-			var chart_collapse = document.getElementById("chart-collapse");
-			chart_collapse.click();
+			get_first_averages = function () {
+				return [
+					[0, 0],
+					[5, 320],
+					[10, 700],
+					[15, 900],
+					[20, 1000],
+					[25, 1300],
+					[30, 1470],
+					[35, 1700],
+					[40, 1800],
+					[45, 1940],
+					[50, 2080],
+					[55, 2200],
+					[60, 2340],
+					[65, 2500],
+					[70, 2640],
+					[75, 2760],
+					[80, 2900],
+					[85, 3040],
+					[90, 3120],
+					[95, 3200],
+					[100, 3340]
+				]
+			};
 
-			// function to detect is element is collapsed
-			var is_chart_collapsed = function() {
-				var button_chart_collapse = $(chart_collapse).find("i");
-				var classList = button_chart_collapse.attr("class").split(/\s+/);
-				var arrayLength = classList.length;
-				for (var i=0; i < arrayLength; i++) {
-					if (classList[i] == "fa-chevron-up") {
-						return false;
-					}
-					if (classList[i] == "fa-chevron-down") {
-						return true;
-					}
-				}
+			get_second_ranges = function() {
+				return [
+						[0, 0, 0],
+						[5, 283.0, 357.0],
+						[10, 609.0, 791.0],
+						[15, 770.0, 1031.0],
+						[20, 924.0, 1276.0],
+						[25, 1155.0, 1645.0],
+						[30, 1280.0, 1880.0],
+						[35, 1383.0, 2097.0],
+						[40, 1466.0, 2294.0],
+						[45, 1622.0, 2618.0],
+						[50, 1695.0, 2825.0],
+						[55, 1764.0, 3036.0],
+						[60, 1829.0, 3251.0],
+						[65, 1904.0, 3497.0],
+						[70, 2001.0, 3799.0],
+						[75, 2120.0, 4161.0],
+						[80, 2165.0, 4395.0],
+						[85, 2219.0, 4661.0],
+						[90, 2255.0, 4905.0],
+						[95, 2276.0, 5125.0],
+						[100, 2304.0, 5376.0]
+				]
+			};
+
+			get_second_averages = function () {
+				return [
+					[0, 0],
+					[5, 320],
+					[10, 700],
+					[15, 900],
+					[20, 1100],
+					[25, 1400],
+					[30, 1580],
+					[35, 1740],
+					[40, 1880],
+					[45, 2120],
+					[50, 2260],
+					[55, 2400],
+					[60, 2540],
+					[65, 2700],
+					[70, 2900],
+					[75, 3140],
+					[80, 3280],
+					[85, 3440],
+					[90, 3580],
+					[95, 3700],
+					[100, 3840]
+				]
+			};
+
+			get_third_ranges = function() {
+				return [
+						[0, 0, 0],
+						[5, 281.0, 359.0],
+						[10, 599.0, 802.0],
+						[15, 749.0, 1051.0],
+						[20, 810.0, 1190.0],
+						[25, 866.0, 1334.0],
+						[30, 872.0, 1408.0],
+						[35, 906.0, 1534.0],
+						[40, 965.0, 1715.0],
+						[45, 990.0, 1850.0],
+						[50, 1026.0, 2014.0],
+						[55, 1044.0, 2156.0],
+						[60, 1040.0, 2261.0],
+						[65, 1033.0, 2367.0],
+						[70, 1030.0, 2490.0],
+						[75, 1035.0, 2645.0],
+						[80, 1026.0, 2774.0],
+						[85, 1025.0, 2935.0],
+						[90, 1010.0, 3070.0],
+						[95, 997.0, 3223.0],
+						[100, 981.0, 3379.0]
+				]
+			};
+
+			get_third_averages = function () {
+				return [
+					[0, 0],
+					[5, 320],
+					[10, 700],
+					[15, 900],
+					[20, 1000],
+					[25, 1100],
+					[30, 1140],
+					[35, 1220],
+					[40, 1340],
+					[45, 1420],
+					[50, 1520],
+					[55, 1600],
+					[60, 1650],
+					[65, 1700],
+					[70, 1760],
+					[75, 1840],
+					[80, 1900],
+					[85, 1980],
+					[90, 2040],
+					[95, 2110],
+					[100, 2180]
+				]
+			};
+
+			get_first_scatter_data = function() {
+				return [
+					[4, 281],
+					[11, 707]
+				]
+			};
+
+			get_second_scatter_data = function() {
+				return [
+					[4, 281],
+					[11, 707],
+					[14, 873]
+				]
+			};
+
+			get_third_scatter_data = function() {
+				return [
+					[4, 281],
+					[11, 707],
+					[14, 873],
+					[21, 1123]
+				]
+			};
+
+			get_scatter_data_real = function() {
+				return [
+					[4, 281],
+					[11, 707],
+					[14, 873],
+					[21, 1123],
+					[28, 1284],
+					[34, 1392],
+					[84, 1886],
+					[95, 1992]
+				]
 			};
 
 			// functions that manage the view of the chart
-			get_default_ranges = function() {
-				return [
-						[1246406400000, 14.3, 27.7],
-						[1246492800000, 14.5, 27.8],
-						[1246579200000, 15.5, 29.6],
-						[1246665600000, 16.7, 30.7],
-						[1246752000000, 16.5, 25.0],
-						[1246838400000, 17.8, 25.7],
-						[1246924800000, 13.5, 24.8],
-						[1247011200000, 10.5, 21.4],
-						[1247097600000, 9.2, 23.8],
-						[1247184000000, 11.6, 21.8],
-						[1247270400000, 10.7, 23.7],
-						[1247356800000, 11.0, 23.3],
-						[1247443200000, 11.6, 23.7],
-						[1247529600000, 11.8, 20.7],
-						[1247616000000, 12.6, 22.4],
-						[1247702400000, 13.6, 19.6],
-						[1247788800000, 11.4, 22.6],
-						[1247875200000, 13.2, 25.0],
-						[1247961600000, 14.2, 21.6],
-						[1248048000000, 13.1, 17.1],
-						[1248134400000, 12.2, 15.5],
-						[1248220800000, 12.0, 20.8],
-						[1248307200000, 12.0, 17.1],
-						[1248393600000, 12.7, 18.3],
-						[1248480000000, 12.4, 19.4],
-						[1248566400000, 12.6, 19.9],
-						[1248652800000, 11.9, 20.2],
-						[1248739200000, 11.0, 19.3],
-						[1248825600000, 10.8, 17.8],
-						[1248912000000, 11.8, 18.5],
-						[1248998400000, 10.8, 16.1]
-				]
-			};
-
-			get_default_averages = function () {
-				return [
-						[1246406400000, 21.5],
-						[1246492800000, 22.1],
-						[1246579200000, 23],
-						[1246665600000, 23.8],
-						[1246752000000, 21.4],
-						[1246838400000, 21.3],
-						[1246924800000, 18.3],
-						[1247011200000, 15.4],
-						[1247097600000, 16.4],
-						[1247184000000, 17.7],
-						[1247270400000, 17.5],
-						[1247356800000, 17.6],
-						[1247443200000, 17.7],
-						[1247529600000, 16.8],
-						[1247616000000, 17.7],
-						[1247702400000, 16.3],
-						[1247788800000, 17.8],
-						[1247875200000, 18.1],
-						[1247961600000, 17.2],
-						[1248048000000, 14.4],
-						[1248134400000, 13.7],
-						[1248220800000, 15.7],
-						[1248307200000, 14.6],
-						[1248393600000, 15.3],
-						[1248480000000, 15.3],
-						[1248566400000, 15.8],
-						[1248652800000, 15.2],
-						[1248739200000, 14.8],
-						[1248825600000, 14.4],
-						[1248912000000, 15],
-						[1248998400000, 13.6]
-				]
-			};
-
-			get_default_scatter_data = function() {
-				return [
-					[1, 7.0],
-					[2, 6.9],
-					[4, 14.5],
-					[7, 25.2]
-				]
-			};
-
 			var chart_view_update = (function () {
 
           var chart = chart_controller.getChartInstance();
@@ -297,9 +451,6 @@ define("main",
       });
 
 
-			// load empty chart so that it gets size
-			chart_view_update();
-
 			// controller factory
 			var selected_app_controller = factory.createController("combo_controller");
 			selected_app_controller.init("select-apps");
@@ -334,6 +485,25 @@ define("main",
 					//	}
 					//}
 			});
+
+			// everything is set: make page visible
+			// 1. collapse/uncollapse the different divs
+			var log_in_collapse_controller = factory.createController("div_collapse_controller");
+			log_in_collapse_controller.init("log-in-collapse");
+			log_in_collapse_controller.uncollapse();
+			var submit_form_collapse_controller = factory.createController("div_collapse_controller");
+			submit_form_collapse_controller.init("submit-form-collapse");
+			submit_form_collapse_controller.collapse();
+			var get_real_form_collapse_controller = factory.createController("div_collapse_controller");
+			get_real_form_collapse_controller.init("get-real-form-collapse");
+			get_real_form_collapse_controller.collapse();
+			var chart_collapse_controller = factory.createController("div_collapse_controller");
+			chart_collapse_controller.init("chart-collapse");
+			chart_collapse_controller.collapse();
+			// 2. make page visible
+			document.getElementById("page-wrapper").style.visibility='visible'
+			// 3. load empty chart so that it gets size
+			chart_view_update();
 
 		});
 

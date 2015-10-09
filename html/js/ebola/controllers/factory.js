@@ -5,9 +5,9 @@
 define("controllers/factory",
 
 	// dependencies are the objects in the factory
-	["controllers/combo_controller"],
+	["controllers/combo_controller", "controllers/div_collapse_controller"],
 
-	function(combo_controller) {
+	function(combo_controller, div_collapse_controller) {
 
 		// Factoria de controladores
 		var ControllerFactory = function(){};
@@ -26,6 +26,7 @@ define("controllers/factory",
 
 		// register
 		factory.registerType("combo_controller", combo_controller.getBuilder());
+		factory.registerType("div_collapse_controller", div_collapse_controller.getBuilder());
 		return {
 			createController : function(controllerType) {
 				return factory.createController(controllerType);
