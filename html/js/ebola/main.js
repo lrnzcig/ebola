@@ -42,25 +42,35 @@ define("main",
 		$(document).ready(function(){
 
 			// manage steps of the wizard
-			$("#wizard").steps({
+			var add_submit_effect = function () {
+				$("#submit-form-effect").addClass("animated");
+				$("#submit-form-effect").addClass("pulse");
+			};
+			var rm_submit_effect = function () {
+				$("#submit-form-effect").removeAttr('class').attr('class', '');
+			}
+			var wizard = $("#wizard").show();
+			wizard.steps({
+				transitionEffect: "slideLeft",
 			  onStepChanging: function (event, currentIndex, newIndex) {
 					if (newIndex == 0) {
 						// before login
 						log_in_collapse_controller.uncollapse();
 						submit_form_collapse_controller.collapse();
-						get_real_form_collapse_controller.collapse();
 						chart_collapse_controller.collapse();
 					} else if (newIndex == 1) {
 						// after login
 						log_in_collapse_controller.collapse();
 						cleanup_data_form();
+						add_submit_effect();
+						setTimeout(function () {
+							rm_submit_effect();
+						}, 1000);
 						submit_form_collapse_controller.uncollapse();
-						get_real_form_collapse_controller.collapse();
 						chart_collapse_controller.collapse();
 					} else if (newIndex == 2 | newIndex == 3) {
 						// first graph
 						log_in_collapse_controller.collapse();
-						get_real_form_collapse_controller.collapse();
 
 						// set data and 1st chart
 						cleanup_data_form();
@@ -69,19 +79,26 @@ define("main",
 						document.getElementById('ith2').value = get_first_scatter_data()[1][0];
 						document.getElementById('num2').value = get_first_scatter_data()[1][1];
 						submit_form_collapse_controller.uncollapse();
+						add_submit_effect();
+						setTimeout(function () {
+							rm_submit_effect();
+							if (newIndex == 2) {
+								submit_form_collapse_controller.collapse();
+							}
+							// show graph after effect
+							chart_collapse_controller.uncollapse();
+							var chart = chart_controller.getChartInstance();
+							chart.ranges = get_first_ranges();
+							chart.averages = get_first_averages();
+							chart.scatter_data = get_first_scatter_data();
+							chart.scatter_data_real = [];
+							chart_view_update();
+							document.getElementById("chart").focus();
+						}, 1200);
 
-						chart_collapse_controller.uncollapse();
-						var chart = chart_controller.getChartInstance();
-						chart.ranges = get_first_ranges();
-						chart.averages = get_first_averages();
-						chart.scatter_data = get_first_scatter_data();
-						chart.scatter_data_real = [];
-						chart_view_update();
-						document.getElementById("chart").focus()
 					} else if (newIndex == 4 | newIndex == 5) {
 						// second graph
 						log_in_collapse_controller.collapse();
-						get_real_form_collapse_controller.collapse();
 
 						// set data and 1st chart
 						cleanup_data_form();
@@ -92,19 +109,25 @@ define("main",
 						document.getElementById('ith3').value = get_second_scatter_data()[2][0];
 						document.getElementById('num3').value = get_second_scatter_data()[2][1];
 						submit_form_collapse_controller.uncollapse();
-
-						chart_collapse_controller.uncollapse();
-						var chart = chart_controller.getChartInstance();
-						chart.ranges = get_second_ranges();
-						chart.averages = get_second_averages();
-						chart.scatter_data = get_second_scatter_data();
-						chart.scatter_data_real = [];
-						chart_view_update();
-						document.getElementById("chart").focus()
+						add_submit_effect();
+						setTimeout(function () {
+							rm_submit_effect();
+							if (newIndex == 4) {
+								submit_form_collapse_controller.collapse();
+							}
+							// show graph after effect
+							chart_collapse_controller.uncollapse();
+							var chart = chart_controller.getChartInstance();
+							chart.ranges = get_second_ranges();
+							chart.averages = get_second_averages();
+							chart.scatter_data = get_second_scatter_data();
+							chart.scatter_data_real = [];
+							chart_view_update();
+							document.getElementById("chart").focus();
+						}, 1200);
 					} else if (newIndex == 6) {
 						// second graph
 						log_in_collapse_controller.collapse();
-						get_real_form_collapse_controller.collapse();
 
 						// set data and 1st chart
 						cleanup_data_form();
@@ -117,15 +140,21 @@ define("main",
 						document.getElementById('ith4').value = get_third_scatter_data()[3][0];
 						document.getElementById('num4').value = get_third_scatter_data()[3][1];
 						submit_form_collapse_controller.uncollapse();
+						add_submit_effect();
+						setTimeout(function () {
+							rm_submit_effect();
+							submit_form_collapse_controller.collapse();
+							// show graph after effect
+							chart_collapse_controller.uncollapse();
+							var chart = chart_controller.getChartInstance();
+							chart.ranges = get_third_ranges();
+							chart.averages = get_third_averages();
+							chart.scatter_data = get_third_scatter_data();
+							chart.scatter_data_real = get_scatter_data_real();
+							chart_view_update();
+							document.getElementById("chart").focus()
+						}, 1200);
 
-						chart_collapse_controller.uncollapse();
-						var chart = chart_controller.getChartInstance();
-						chart.ranges = get_third_ranges();
-						chart.averages = get_third_averages();
-						chart.scatter_data = get_third_scatter_data();
-						chart.scatter_data_real = get_scatter_data_real();
-						chart_view_update();
-						document.getElementById("chart").focus()
 					}
 			    return true;
 			  }
@@ -469,21 +498,6 @@ define("main",
 			// Get real data controller
 			$('#get-real-data').click(function () {
 				return;
-					//success: function(data, textStatus, jqXHR) {
-					//	var chart = ChartSingleton.getInstance();
-					//	if (data.iths) {
-					//		if (is_chart_collapsed()) {
-					//			chart_collapse.click();
-					//			chart_is_collapsed = false;
-					//		}
-					//		chart.set_scatter_data_real(data);
-					//		chart.update();
-					//		document.getElementById("get-real-form-collapse").click();
-					//		document.getElementById("chart").focus()
-					//	} else {
-					//		console.log("Error in response from server. No data.iths")
-					//	}
-					//}
 			});
 
 			// everything is set: make page visible
@@ -491,12 +505,11 @@ define("main",
 			var log_in_collapse_controller = factory.createController("div_collapse_controller");
 			log_in_collapse_controller.init("log-in-collapse");
 			log_in_collapse_controller.uncollapse();
+
 			var submit_form_collapse_controller = factory.createController("div_collapse_controller");
 			submit_form_collapse_controller.init("submit-form-collapse");
 			submit_form_collapse_controller.collapse();
-			var get_real_form_collapse_controller = factory.createController("div_collapse_controller");
-			get_real_form_collapse_controller.init("get-real-form-collapse");
-			get_real_form_collapse_controller.collapse();
+
 			var chart_collapse_controller = factory.createController("div_collapse_controller");
 			chart_collapse_controller.init("chart-collapse");
 			chart_collapse_controller.collapse();
@@ -524,7 +537,7 @@ require.config({
       highcharts: "../highcharts/highcharts",
       highchartsmore: "../highcharts/highcharts-more",
       highchartsexporting: "../highcharts/exporting",
-			jquerysteps: "../plugins/staps/jquery.steps.min",
+			jquerysteps: "../plugins/jquery.steps/jquery.steps",
 			jqueryvalidate: "../plugins/validate/jquery.validate.min",
       // here the custom controllers for this application
       custompageloader: "ebola_loader"
