@@ -540,5 +540,19 @@ require.config({
 			jqueryvalidate: "../plugins/validate/jquery.validate.min",
       // here the custom controllers for this application
       custompageloader: "ebola_loader"
-    }
+    },
+		shim: {
+    	highcharts: {
+      	exports: "Highcharts",
+      	deps: ["jquery"]
+			},
+			highchartsmore: {
+				exports: "Highcharts",
+      	deps: ["jquery", "highcharts"]
+    	},
+			highchartsexporting: {
+				exports: "Highcharts",
+      	deps: ["jquery", "highcharts"]
+    	}
+  	}
 });
