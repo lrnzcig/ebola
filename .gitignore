@@ -1,10 +1,13 @@
 target/
 html/*.html
 html/js/*
-html/css
+html/css/*.css
+html/css/patterns
+html/css/plugins/*
 html/email_templates
 html/font-awesome
 html/fonts
 html/img
+!html/css/plugins/steps
 !html/samoa_demo.html
 !html/js/ebola
