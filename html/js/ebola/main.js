@@ -51,7 +51,6 @@ define("main",
 			}
 			var wizard = $("#wizard").show();
 			wizard.steps({
-				transitionEffect: "slideLeft",
 			  onStepChanging: function (event, currentIndex, newIndex) {
 					if (newIndex == 0) {
 						// before login
